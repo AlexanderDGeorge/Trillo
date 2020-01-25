@@ -27,11 +27,10 @@
    * Settings
    
  ### Technologies and Challenges
-  Trillo is built using the MERN stack with GraphQL and Apollo serving as middleware and state management technologies respectively. The file upload feature is accomplished using AWS. 
-  The primary technical challenges will be:
-    * Email registration
-    * Developing Search to search through Boards, Lists, Cards, Files, and Comments
-    * File upload and view
+  Trillo is built using the MERN stack with GraphQL and Apollo serving as middleware and state management technologies respectively. The file upload feature is accomplished using AWS. The primary technical challenges will be:
+ * Email registration
+ * Developing Search to search through Boards, Lists, Cards, Files, and Comments
+ * File upload and view
   
  ### Group Members and Work Breakdown
  * Alex
