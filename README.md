@@ -28,6 +28,10 @@
    
  ### Technologies and Challenges
   Trillo is built using the MERN stack with GraphQL and Apollo serving as middleware and state management technologies respectively. The file upload feature is accomplished using AWS. 
+  The primary technical challenges will be:
+    * Email registration
+    * Developing Search to search through Boards, Lists, Cards, Files, and Comments
+    * File upload and view
   
  ### Group Members and Work Breakdown
  * Alex
@@ -43,26 +47,32 @@
   
   ### Implementation Timeline
   * Day 0 (Weekend) Begin the repo and project. Complete:
-    * User auth
-    * Styled home page allowing User to register, login, logout
-    * Email verification for user registration
-    * Backend work for first round of features
+    * Determine styling defaults for project (all)
+    * User auth (Alex)
+    * Styled home page allowing User to register, login, logout (Alex)
+    * Email verification for user registration (Alex, Sadman) 
+    * Backend work for first round of features (all)
   * Day 1 (Monday) Work on developing frontend components for Boards, Lists, and Cards. Complete:
-    * Unstyled page for managing Boards
-    * Page for Boards with unstyled List and Card components
+    * Unstyled page for managing Boards (Majid)
+    * Page for Boards with unstyled List and Card components (Majid)
+    * Unstyled, functional List component (Alex)
+    * Unstyled, functional Card component (Sadman)
   * Day 2 Finish styling and fix bugs for Boards, Lists, and Cards. Complete: 
-    * Styled components for each
-    * Drag animations for List and Card components using react-spring.
-    * User ability to change background of Boards
+    * Styled components for each (all)
+    * Drag animations for Lists using react-spring (Alex)
+    * Drag animatinos for Cards using react-spring (Sadman)
+    * User ability to change background of Boards (Majid)
   * Day 3 Begin development of the second round of features (Search, File Upload, and Card Comments). Complete: 
-    * Backend work for features
-    * Skeletons of components on webpage
+    * Backend work for features (all)
+    * Skeletons of components on webpage (all)
   * Day 4 Continue development for Search, File Upload, and Card Comments. Complete:
-    * Fully functional, unstyled component for Search and Card Comments.
-    * User ability to successfully upload files
+    * Unstyled, functional Search component (Alex)
+    * Unstlyed, functional Card Comments (Sadman)
+    * User ability to successfully upload files (Majid)
   * Day 5 Finish up all components, fix bugs, add styling. Complete:
-    * User has access to uploaded files
-    * All features are styled and fully functional
+    * User has access to uploaded files (Majid)
+    * All features are styled and fully functional (all)
+    * Bonus features if time permits
   
   
  ### Things Accomplished Over the Weekend
