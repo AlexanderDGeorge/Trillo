@@ -1,7 +1,12 @@
 const graphql = require("graphql");
-const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID } = graphql;
+const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID, GraphQLNonNull } = graphql;
 
 const UserType = require("./types/user_type");
+const BoardType = require("./types/board_type");
+const ListType = require("./types/list_type");
+
+const Board = require("../models/Board")
+const List = require("../models/List");
 
 const AuthService = require("../services/auth");
 
@@ -53,6 +58,34 @@ const mutation = new GraphQLObjectType({
         return AuthService.verifyUser(args);
       }
     },
+    newBoard: {
+      type: BoardType,
+      args: {
+        title: { type: GraphQLString }
+      },
+      resolve(parentValue, { title }) {
+        return new Board({ title }).save();
+      }
+    },
+    newList: {
+      type: ListType,
+      args: {
+        title: { type: GraphQLString }
+      },
+      resolve(parentValue, { title }) {
+        return new List({ title }).save();
+      }
+    },
+    addBoardList: {
+      type: BoardType,
+      args: {
+        boardId: { type: new GraphQLNonNull(GraphQLID) },
+        listId: { type: new GraphQLNonNull(GraphQLID) }
+      },
+      resolve(parentValue, args) {
+        return Board.addList(args.boardId, args.listId);
+      }
+    }
   }
 });
 

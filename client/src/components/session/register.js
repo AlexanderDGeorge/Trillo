@@ -15,6 +15,12 @@ class Register extends Component {
     };
   }
 
+  handleClick(e) {
+    if (this.node.contains(e.target)){
+      this.props.history.push("/");
+    }
+  }
+
   update(field) {
     return e => this.setState({ [field]: e.target.value });
   }
@@ -40,9 +46,11 @@ class Register extends Component {
           update={(client, data) => this.updateCache(client, data)}
         >
           {registerUser => (
-            <div className="session">
+            <div className="session"
+              onClick={this.handleClick}>
               <form
                 className="session-form"
+                ref={node => this.node = node}
                 onSubmit={e => {
                   e.preventDefault();
                   registerUser({
