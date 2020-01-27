@@ -25,6 +25,7 @@ const RootQuery = new GraphQLObjectType({
         return User.find({});
       }
     },
+    
   })
 })
 
