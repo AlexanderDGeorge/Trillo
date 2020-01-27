@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import AuthRoute from '../util/route_util';
 import Login from './session/login';
 import Register from './session/register';
-import Home from './Home';
+import Home from './home/home';
 
 export default () => (
   <Switch>
