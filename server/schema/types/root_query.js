@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const graphql = require("graphql");
 const { GraphQLObjectType, GraphQLList, GraphQLID, GraphQLNonNull } = graphql;
 
+const modelIndex = require('../../models/index');
 // models here
 const User = mongoose.model("user");
 // types here
