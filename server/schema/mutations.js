@@ -1,5 +1,6 @@
 const graphql = require("graphql");
 const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID, GraphQLNonNull } = graphql;
+const AuthService = require("../services/auth");
 
 const UserType = require("./types/user_type");
 const BoardType = require("./types/board_type");
@@ -8,7 +9,6 @@ const ListType = require("./types/list_type");
 const Board = require("../models/Board")
 const List = require("../models/List");
 
-const AuthService = require("../services/auth");
 
 const mutation = new GraphQLObjectType({
   name: "Mutation",
@@ -85,7 +85,14 @@ const mutation = new GraphQLObjectType({
       resolve(parentValue, args) {
         return Board.addList(args.boardId, args.listId);
       }
-    }
+    },
+    deleteBoard:{
+      type: BoardType,
+      args: { _id: { type: GraphQLID }},
+      resolve(_, { _id }){
+        return Board.remove({ _id });
+      }
+    },
   }
 });
 

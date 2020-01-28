@@ -55,6 +55,7 @@ const RootQuery = new GraphQLObjectType({
         return List.find({});
       }
     },
+
   })
 })
 
