@@ -6,6 +6,7 @@ const AuthService = require("../services/auth");
 const UserType = require("./types/user_type");
 const BoardType = require("./types/board_type");
 const ListType = require("./types/list_type");
+const CardType = require("./types/card_type");
 const models = require("../models/index");
 const Board = mongoose.model("board")
 const List = mongoose.model("list");
@@ -131,6 +132,42 @@ const mutation = new GraphQLObjectType({
         return List.deleteOne({ _id: id })
       }
     },
+    newCard:{
+      type: CardType,
+      args: {
+        title: { type: GraphQLString }
+      },
+      resolve(_, { title }) {
+        return new List({ title }).save();
+      }
+    },
+    updateCard: {
+      type: CardType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+        title: { type: GraphQLString }
+      },
+      resolve(_, { id, title }) {
+        const newCard = {};
+        if (id) newCard.id = id;
+        if (title) newCard.title = title;
+        return Card.findByIdAndUpdate(
+          { id: id },
+          { $set: newCard },
+          { new: true },
+          (err, card) => {
+            return card;
+          }
+        )
+      }
+    },
+    deleteCard: {
+      type: CardType,
+      args: { id: { type: new GraphQLNonNull(GraphQLID) } },
+      resolve(_, { id }) {
+        return Card.deleteOne({ _id: id })
+      }
+    },
     addBoardList: {
       type: BoardType,
       args: {
@@ -139,6 +176,36 @@ const mutation = new GraphQLObjectType({
       },
       resolve(_, { boardId, listId }) {
         return Board.addList(boardId, listId);
+      }
+    },
+    removeBoardList: {
+      type: BoardType,
+      args: {
+        boardId: { type: new GraphQLNonNull(GraphQLID) },
+        listId: { type: new GraphQLNonNull(GraphQLID) }
+      },
+      resolve(_, { boardId, listId }) {
+        return Board.removeList(boardId, listId);
+      }
+    },
+    addListCard: {
+      type: ListType,
+      args: {
+        listId: { type: new GraphQLNonNull(GraphQLID) },
+        cardId: { type: new GraphQLNonNull(GraphQLID) }
+      },
+      resolve(_, { listId, cardId }) {
+        return List.addCard(listId, cardId);
+      }
+    },
+    removeListCard: {
+      type: ListType,
+      args: {
+        listId: { type: new GraphQLNonNull(GraphQLID) },
+        cardId: { type: new GraphQLNonNull(GraphQLID) }
+      },
+      resolve(_, { listId, cardId }) {
+        return List.removeCard(listId, cardId);
       }
     },
   }
