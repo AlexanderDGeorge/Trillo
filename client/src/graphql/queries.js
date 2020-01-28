@@ -11,7 +11,7 @@ export const FETCH_BOARDS = gql`
         boards{
             _id
             name
-            users
+           
         }
     }
 `;

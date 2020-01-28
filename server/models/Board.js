@@ -14,12 +14,12 @@ const BoardSchema = new Schema({
     }
   ]
   ,
-  users: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "user"
-    }
-  ]
+  // users: [
+  //   {
+  //     type: Schema.Types.ObjectId,
+  //     ref: "user"
+  //   }
+  // ]
 
 });
 

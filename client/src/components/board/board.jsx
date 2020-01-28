@@ -1,31 +1,20 @@
-import React from "react";
-import { Query } from "react-apollo";
+import React, { Component } from 'react';
+import './board.css';
 
-import  { FETCH_BOARDS } from '../../graphql/queries';
+import BoardList from './board-list';
+import AddBook from './new-board';
 
 
-const Board = () =>{
-  return(
-    <Query query={FETCH_BOARDS}>
-      {
-        ({loading, error, data}) =>{
-          if(loading) return "Loading...";
-          if(error) return `Error! ${error.message}`;
-          return (
-            <ul>
-              {data.boards.map(board =>(
-                <li key={ board._id}>
-                  { board.name}
-                 
-                  {board._id}
-                </li>
-              ))}
-            </ul>
-          );
-        }
-      }
-    </Query>
-  );
-};
+class Board extends Component{
+  render(){
+    return(
+      <div>
+        <h1>Personal Boards</h1>
+        <BoardList/>
+        <AddBook/>
+      </div>
+    );
+  }
+}
 
 export default Board;

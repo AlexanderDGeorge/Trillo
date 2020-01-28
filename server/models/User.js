@@ -20,7 +20,7 @@ const UserSchema = new Schema({
     min: 8,
     max: 16
   },
-  board:{
+  boardId:{
     type: Schema.Types.ObjectId,
     ref: "board"
   }

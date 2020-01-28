@@ -3,7 +3,7 @@ const graphql = require("graphql");
 const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList } = graphql;
 
 const models = require('../../models/index')
-const Board = mongoose.model("board");
+const User = mongoose.model("user");
 
 const BoardType = new GraphQLObjectType({
   name: "BoardType",
@@ -12,10 +12,8 @@ const BoardType = new GraphQLObjectType({
     name: { type: GraphQLString },
     users: {
       type: new GraphQLList(require('./user_type')),
-      resolve(parentValue){
-        return Board.findById(parentValue._id)
-          .populate("users")
-          .then(board=> board.users);
+      resolve(parentValue,_){
+        return User.find({boardId: parentValue._id})
       }
     },
     // lists:{                                            //===>>> waiting list type

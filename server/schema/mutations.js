@@ -1,6 +1,6 @@
 const graphql = require("graphql");
 const mongoose = require("mongoose");
-const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID } = graphql;
+const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID ,GraphQLNonNull} = graphql;
 
 const AuthService = require("../services/auth");
 //type:
@@ -60,10 +60,10 @@ const mutation = new GraphQLObjectType({
         return AuthService.verifyUser(args);
       }
     },
-    newBoard:{
+    addBoard:{
       type: BoardType,
       args: {
-        name: {type: GraphQLString}
+        name: { type: new GraphQLNonNull(GraphQLString)}
       },
       resolve(_, { name }){
         return new Board({ name }).save();
@@ -71,7 +71,7 @@ const mutation = new GraphQLObjectType({
     },
     deleteBoard:{
       type: BoardType,
-      args: { _id: { type: GraphQLID }},
+      args: { _id: { type: new GraphQLNonNull(GraphQLID) }},
       resolve(_, { _id }){
         return Board.remove({ _id });
       }
