@@ -7,29 +7,12 @@ const BoardSchema = new Schema({
     type: String,
     require: true
   },
-<<<<<<< HEAD
-  lists:[
-    {
-      type:Schema.Types.ObjectId,
-      ref: "list"
-    }
-  ]
-  ,
-  // users: [
-  //   {
-  //     type: Schema.Types.ObjectId,
-  //     ref: "user"
-  //   }
-  // ]
-
-=======
   lists: [
     {
       type: Schema.Types.ObjectId,
       ref: "list"
     }
   ]
->>>>>>> 1e61388336efb93e75b01a91dbde2fc351cafb1b
 });
 
 BoardSchema.statics.addList = (boardId, listId) => {

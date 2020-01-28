@@ -1,11 +1,6 @@
 const mongoose = require("mongoose");
-<<<<<<< HEAD
-const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID ,GraphQLNonNull} = graphql;
-
-=======
 const graphql = require("graphql");
 const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID, GraphQLNonNull } = graphql;
->>>>>>> 1e61388336efb93e75b01a91dbde2fc351cafb1b
 const AuthService = require("../services/auth");
 
 const UserType = require("./types/user_type");
@@ -65,9 +60,6 @@ const mutation = new GraphQLObjectType({
         return AuthService.verifyUser(args);
       }
     },
-<<<<<<< HEAD
-    addBoard:{
-=======
     newBoard: {
       type: BoardType,
       args: {
@@ -97,7 +89,6 @@ const mutation = new GraphQLObjectType({
       }
     },
     deleteBoard: {
->>>>>>> 1e61388336efb93e75b01a91dbde2fc351cafb1b
       type: BoardType,
       args: { id: { type: GraphQLID } },
       resolve(_, { id }) {
@@ -107,11 +98,7 @@ const mutation = new GraphQLObjectType({
     newList: {
       type: ListType,
       args: {
-<<<<<<< HEAD
-        name: { type: new GraphQLNonNull(GraphQLString)}
-=======
         title: { type: GraphQLString }
->>>>>>> 1e61388336efb93e75b01a91dbde2fc351cafb1b
       },
       resolve(_, { title }) {
         return new List({ title }).save();
@@ -146,18 +133,12 @@ const mutation = new GraphQLObjectType({
     },
     addBoardList: {
       type: BoardType,
-<<<<<<< HEAD
-      args: { _id: { type: new GraphQLNonNull(GraphQLID) }},
-      resolve(_, { _id }){
-        return Board.remove({ _id });
-=======
       args: {
         boardId: { type: new GraphQLNonNull(GraphQLID) },
         listId: { type: new GraphQLNonNull(GraphQLID) }
       },
       resolve(_, { boardId, listId }) {
         return Board.addList(boardId, listId);
->>>>>>> 1e61388336efb93e75b01a91dbde2fc351cafb1b
       }
     },
   }
