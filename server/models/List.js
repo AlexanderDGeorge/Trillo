@@ -6,6 +6,10 @@ const ListSchema = new Schema({
     type: String,
     required: true
   },
+  board: {
+    type: Schema.Types.ObjectId,
+    ref: "board"
+  },
   cards: [
     {
       type: Schema.Types.ObjectId,
