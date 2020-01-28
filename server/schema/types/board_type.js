@@ -4,7 +4,7 @@ const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLID,
-  GraphQLBoolean
+  GraphQLList
 } = graphql;
 const models = require("../../models/index");
 const Board = mongoose.model("board");
@@ -18,7 +18,7 @@ const BoardType = new GraphQLObjectType({
     id: { type: GraphQLID },
     title: { type: GraphQLString },
     lists: {
-      type: ListType,
+      type: new GraphQLList(ListType),
       resolve(parentValue) {
         return Board.findById(parentValue.id)
           .populate("lists")
