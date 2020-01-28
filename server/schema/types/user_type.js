@@ -6,6 +6,8 @@ const {
   GraphQLBoolean
 } = graphql;
 
+const modelIndex = require('../../models/index');
+
 const UserType = new GraphQLObjectType({
   name: "UserType",
   fields: () => ({

@@ -7,10 +7,14 @@ const UserType = require("./types/user_type");
 const BoardType = require("./types/board_type");
 const ListType = require("./types/list_type");
 const CardType = require("./types/card_type");
+const CommentType = require("./types/comment_type");
+
 const models = require("../models/index");
+
 const Board = mongoose.model("board")
 const List = mongoose.model("list");
 const Card = mongoose.model("card");
+const Comment = mongoose.model("comment");
 
 
 const mutation = new GraphQLObjectType({
@@ -61,6 +65,56 @@ const mutation = new GraphQLObjectType({
         return AuthService.verifyUser(args);
       }
     },
+
+     newCard: {
+       type: CardType,
+        args: {
+          title: {type: GraphQLString },
+          description: {type: GraphQLString}
+        },
+        resolve(_,{title,description}){
+          return new Card({title,description}).save();
+        }
+     },
+
+     deleteCard: {
+       type: CardType,
+       args: {_id: {type:GraphQLID}},
+       resolve(_, {_id}) {
+         return Card.remove({_id});
+       }
+     },
+
+     updateCard: {
+       type: CardType,
+       args: {
+         id: {type: GraphQLID},
+         title: {type: GraphQLString},
+         description: {type: GraphQLString}
+       },
+       resolve(_,{id,title,description}){
+         return Card.updateCard(id,title,description)
+       }
+     },
+
+     newComment: {
+       type: CommentType,
+       args: {
+         body: {type: GraphQLString},
+       },
+       resolve(_,{body}){
+          return new Comment({body}).save();
+       }
+     },
+
+     deleteComment: {
+       type: CommentType,
+       args: {_id: {type: GraphQLID} },
+       resolve(_,{_id}){
+          return Comment.remove({_id});
+       }
+
+     },
     newBoard: {
       type: BoardType,
       args: {
@@ -132,42 +186,42 @@ const mutation = new GraphQLObjectType({
         return List.deleteOne({ _id: id })
       }
     },
-    newCard:{
-      type: CardType,
-      args: {
-        title: { type: GraphQLString }
-      },
-      resolve(_, { title }) {
-        return new List({ title }).save();
-      }
-    },
-    updateCard: {
-      type: CardType,
-      args: {
-        id: { type: new GraphQLNonNull(GraphQLID) },
-        title: { type: GraphQLString }
-      },
-      resolve(_, { id, title }) {
-        const newCard = {};
-        if (id) newCard.id = id;
-        if (title) newCard.title = title;
-        return Card.findByIdAndUpdate(
-          { id: id },
-          { $set: newCard },
-          { new: true },
-          (err, card) => {
-            return card;
-          }
-        )
-      }
-    },
-    deleteCard: {
-      type: CardType,
-      args: { id: { type: new GraphQLNonNull(GraphQLID) } },
-      resolve(_, { id }) {
-        return Card.deleteOne({ _id: id })
-      }
-    },
+    // newCard:{
+    //   type: CardType,
+    //   args: {
+    //     title: { type: GraphQLString }
+    //   },
+    //   resolve(_, { title }) {
+    //     return new List({ title }).save();
+    //   }
+    // },
+    // updateCard: {
+    //   type: CardType,
+    //   args: {
+    //     id: { type: new GraphQLNonNull(GraphQLID) },
+    //     title: { type: GraphQLString }
+    //   },
+    //   resolve(_, { id, title }) {
+    //     const newCard = {};
+    //     if (id) newCard.id = id;
+    //     if (title) newCard.title = title;
+    //     return Card.findByIdAndUpdate(
+    //       { id: id },
+    //       { $set: newCard },
+    //       { new: true },
+    //       (err, card) => {
+    //         return card;
+    //       }
+    //     )
+    //   }
+    // },
+    // deleteCard: {
+    //   type: CardType,
+    //   args: { id: { type: new GraphQLNonNull(GraphQLID) } },
+    //   resolve(_, { id }) {
+    //     return Card.deleteOne({ _id: id })
+    //   }
+    // },
     addBoardList: {
       type: BoardType,
       args: {
