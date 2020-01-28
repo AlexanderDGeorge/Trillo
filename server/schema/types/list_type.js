@@ -4,7 +4,7 @@ const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLID,
-  GraphQLBoolean
+  GraphQLList
 } = graphql;
 const models = require("../../models/index");
 const BoardType = require("./board_type");
@@ -23,7 +23,7 @@ const ListType = new GraphQLObjectType({
       type: GraphQLString
     },
     cards: {
-      type: CardType,
+      type: new GraphQLList(CardType),
       resolve(parentValue) {
         return List.findById(parentValue.id)
           .populate("cards")
