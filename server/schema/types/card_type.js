@@ -15,9 +15,6 @@ const CardType = new GraphQLObjectType({
     title: {
       type: GraphQLString
     },
-    comments: {
-      
-    }
   })
 })
 
