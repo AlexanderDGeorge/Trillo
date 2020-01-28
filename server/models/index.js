@@ -1,2 +1,4 @@
 require("./User");
-require('./Board');
+require("./Board");
+require("./List");
+require("./Card");

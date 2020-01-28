@@ -1,39 +1,31 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const models = require("./index");
 
 const BoardSchema = new Schema({
-  name: {
-    type:String,
-    required: true,
-    unique: true
+  title: {
+    type: String,
+    require: true
   },
-  lists:[
+  lists: [
     {
-      type:Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "list"
     }
   ]
-  ,
-  users: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "user"
-    }
-  ]
-
 });
 
-// BoardSchema.static.findUsers = function(boardId){
-//   return this.findById(boardId)
-//    .populate("users")
-//    .then(board => board.users);
-// }
-
-// BoardSchema.static.findLists = function (boardId) {
-//   return this.findById(boardId)
-//     .populate("lists")
-//     .then(board => board.lists);
-// }
-
+BoardSchema.statics.addList = (boardId, listId) => {
+  const Board = mongoose.model("board");
+  const List = mongoose.model("list");
+  return Board.findById(boardId).then(board => {
+    return List.findById(listId).then(list => {
+      board.lists.push(list);
+      return Promise.all([board.save(), list.save()]).then(
+        ([board, list]) => board
+      );
+    })
+  })
+}
 
 module.exports = mongoose.model("board", BoardSchema);

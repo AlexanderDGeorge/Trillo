@@ -1,15 +1,13 @@
 const graphql = require("graphql");
-const mongoose = require("mongoose");
-const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID } = graphql;
-
+const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID, GraphQLNonNull } = graphql;
 const AuthService = require("../services/auth");
-//type:
+
 const UserType = require("./types/user_type");
-const BoardType = require('./types/board_type');
+const BoardType = require("./types/board_type");
+const ListType = require("./types/list_type");
 
-//model:
-const Board = mongoose.model("board");
-
+const Board = require("../models/Board")
+const List = require("../models/List");
 
 
 const mutation = new GraphQLObjectType({
@@ -60,13 +58,32 @@ const mutation = new GraphQLObjectType({
         return AuthService.verifyUser(args);
       }
     },
-    newBoard:{
+    newBoard: {
       type: BoardType,
       args: {
-        name: {type: GraphQLString}
+        title: { type: GraphQLString }
       },
-      resolve(_, { name }){
-        return new Board({ name }).save();
+      resolve(parentValue, { title }) {
+        return new Board({ title }).save();
+      }
+    },
+    newList: {
+      type: ListType,
+      args: {
+        title: { type: GraphQLString }
+      },
+      resolve(parentValue, { title }) {
+        return new List({ title }).save();
+      }
+    },
+    addBoardList: {
+      type: BoardType,
+      args: {
+        boardId: { type: new GraphQLNonNull(GraphQLID) },
+        listId: { type: new GraphQLNonNull(GraphQLID) }
+      },
+      resolve(parentValue, args) {
+        return Board.addList(args.boardId, args.listId);
       }
     },
     deleteBoard:{

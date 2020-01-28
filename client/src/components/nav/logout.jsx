@@ -5,6 +5,7 @@ function Logout(){
   return (
     <ApolloConsumer>{client => (
       <button
+        className="session-button"
         onClick={e => {
           e.preventDefault();
           localStorage.removeItem("auth-token");
