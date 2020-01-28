@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
+<<<<<<< HEAD
+const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID ,GraphQLNonNull} = graphql;
+
+=======
 const graphql = require("graphql");
 const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID, GraphQLNonNull } = graphql;
+>>>>>>> 1e61388336efb93e75b01a91dbde2fc351cafb1b
 const AuthService = require("../services/auth");
 
 const UserType = require("./types/user_type");
