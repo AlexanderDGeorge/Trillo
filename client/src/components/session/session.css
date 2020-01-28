@@ -2,9 +2,9 @@
   position: fixed;
   width: 100vw;
   height: 100vh;
-  z-index: 2;
+  z-index: 1;
   top: 0;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,17 +15,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 
 .session-form input {
   border-radius: 5px;
   padding: 20px;
+  margin: 10px;
 }
 
 .session-form button {
-  background-color:  #F07B3F;
+  background-color: #61BD4F;
   border-radius: 5px;
   padding: 20px;
+  margin: 10px;
 }
 

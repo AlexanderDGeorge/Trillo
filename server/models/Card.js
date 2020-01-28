@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-
 const CardSchema = new Schema({
 
     user: {
@@ -27,15 +26,17 @@ const CardSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "list"
     },
-    
+
     comments: [
         {
             type: Schema.Types.ObjectId,
             ref: "comments"
         }
     ]
-
+	
 })
+
+    
 
 CardSchema.statics.updateCard = (id,newTitle,newDescription) => {
     const Card = mongoose.model("card");
