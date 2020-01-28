@@ -4,19 +4,52 @@ const Schema = mongoose.Schema;
 
 const CardSchema = new Schema({
 
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: "user"
+    },
+
     title: {
         type: String,
         required: true
     },
-    cardtype: {
+    description: {
         type: String,
         required: true
     },
     board: {
         type: Schema.Types.ObjectId,
-        required: true
-    }
+        ref: "board"
+
+    },
+
+    list: {
+        type: Schema.Types.ObjectId,
+        ref: "list"
+    },
+    
+    comments: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "comments"
+        }
+    ]
 
 })
 
-module.exports = mongoose.model("cards", CardSchema);
+CardSchema.statics.updateCard = (id,newTitle,newDescription) => {
+    const Card = mongoose.model("card");
+
+    return Card.findById(id)
+       .then(card =>{
+           if(card){
+               card.title = newTitle;
+               card.description = newDescription;
+           }
+           else{
+               throw new Error("The card does not exist");
+           }
+       })
+}
+
+module.exports = mongoose.model("card", CardSchema);
