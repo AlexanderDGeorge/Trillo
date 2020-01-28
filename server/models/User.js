@@ -31,7 +31,7 @@ UserSchema.static.updateUserBoard = (userId, boardId) =>{
   const Board = mongoose.model("board");
 
 
-  return Product.findById(userId).then(user => {
+  return User.findById(userId).then(user => {
     if (user.board) {
       Board.findById(user.board).then(oldBoard => {
         oldBoard.users.pull(user);

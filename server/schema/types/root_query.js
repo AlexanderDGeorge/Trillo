@@ -13,7 +13,7 @@ const BoardType = require("./board_type");
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQuery",
-  fields: () => ({
+  fields: {
     user: {
       type: UserType,
       args: { id: { type: new GraphQLNonNull(GraphQLID) } },
@@ -41,7 +41,7 @@ const RootQuery = new GraphQLObjectType({
       }
     }
 
-  })
+  }
 })
 
 module.exports = RootQuery;

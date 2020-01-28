@@ -5,3 +5,13 @@ export const IS_LOGGED_IN = gql`
         isLoggedIn @client
     }
 `;
+
+export const FETCH_BOARDS = gql`
+    query FetchBoards{
+        boards{
+            _id
+            name
+            users
+        }
+    }
+`;

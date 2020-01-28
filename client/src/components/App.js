@@ -5,11 +5,12 @@ import AuthRoute from '../util/route_util';
 import Login from './session/login';
 import Register from './session/register';
 import Home from './home/home';
-
+import Board from './board/board';
 export default () => (
   <Switch>
     <AuthRoute exact path="/login" component={Login} routeType="auth" />
     <AuthRoute exact path="/register" component={Register} routeType="auth" />
+    <Route exact path="/boards" component={Board} />
     <Route path="/" component={Home} />
   </Switch>
 );
