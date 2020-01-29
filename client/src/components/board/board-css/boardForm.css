@@ -64,5 +64,8 @@ form button{
 div{
   /* display:block; */
 }
+.deleteBtn{
+  border: 1px, solid red;
+}
 
 

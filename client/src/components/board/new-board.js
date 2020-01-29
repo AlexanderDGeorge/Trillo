@@ -50,7 +50,7 @@ class AddBoard extends Component{
 
   clearData() {
     this.setState({
-      name: ''
+      title: ''
     })
   }
 
@@ -73,7 +73,7 @@ class AddBoard extends Component{
               <div className="field">
                 <label> Title </label>
                 <input type="text"
-                  value={this.state.name}
+                  value={this.state.title}
                   onChange={this.update("title")} />
               </div>
               <button>+</button>

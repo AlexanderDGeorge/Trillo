@@ -3,6 +3,7 @@ import { Query } from "react-apollo";
 import { Link } from "react-router-dom";
 
 import  { FETCH_BOARDS } from '../../graphql/queries';
+import DeleteBoard from './delete-board';
 
 class BoardList extends React.Component{
   constructor(props){
@@ -22,15 +23,19 @@ class BoardList extends React.Component{
             return (
              <div>
                 {data.boards.map(board => (
-                  <Link to={`/boards/${board.id}`} key={board.id}>
-                    <div className="card">
+                  <div className="card">
+                <span  className="deleteBtn">
+                      <DeleteBoard id={board.id} />
+                </span>
+                  <br></br>
+                   <Link to={`/boards/${board.id}`} key={board.id}>
                       <div className="container" >
                         <span className="board-tile-details">
                           {board.title}
                         </span>
                       </div>
-                    </div>
                   </Link>
+                  </div>
                 ))}
               </div>
             );
