@@ -7,6 +7,26 @@ export const IS_LOGGED_IN = gql`
     }
 `;
 
+export const FETCH_CARDS = gql`
+    query FetchCards {
+        cards {
+            _id
+            title
+            description
+        }
+    }
+
+`;
+
+export const FETCH_COMMENTS = gql`
+    query FetchComments{
+        comments {
+            _id
+            body
+        }
+    }
+`;
+
 export const FETCH_BOARDS = gql`
     query FetchBoards{
         boards{
