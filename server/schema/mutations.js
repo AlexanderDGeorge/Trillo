@@ -3,7 +3,7 @@ const graphql = require("graphql");
 const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID, GraphQLNonNull } = graphql;
 const AuthService = require("../services/auth");
 
-const models = require("../models/index");
+// const models = require("../models/index");
 const UserType = require("./types/user_type");
 const BoardType = require("./types/board_type");
 const ListType = require("./types/list_type");

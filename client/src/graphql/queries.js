@@ -32,10 +32,9 @@ query FetchBoard($id: ID!){
         }
     }
 }
-	query IsUserLoggedIn {
-		isLoggedIn @client
-	}
 `;
+
+
 export const GET_USER_BOARDS = gql`
 	query userBoards($userId: ID!) {
 		user(id: $userId) {

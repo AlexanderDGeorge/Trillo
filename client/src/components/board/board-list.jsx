@@ -22,9 +22,9 @@ class BoardList extends React.Component{
             return (
              <div>
                 {data.boards.map(board => (
-                  <Link to={`/boards/${board.id}`} >
-                    <div  className="card" >
-                      <div className="container" key={board.id}>
+                  <Link to={`/boards/${board.id}`} key={board.id}>
+                    <div className="card">
+                      <div className="container" >
                         <span className="board-tile-details">
                           {board.title}
                         </span>

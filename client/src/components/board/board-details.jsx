@@ -20,7 +20,7 @@ class BoardDetail extends Component{
         {({loading, error, data})=>{
           if(loading) return <h1>Loading...</h1>;
           return(
-            <div onClick={()=> this.setState({editing: true})}>
+            <div onClick={() => this.setState({ editing: true })} >
               <h1>
                 {data.board.title}
               </h1>
