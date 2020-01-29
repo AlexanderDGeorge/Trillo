@@ -30,4 +30,19 @@ BoardSchema.statics.addList = (boardId, listId) => {
   })
 }
 
+BoardSchema.statics.removeList = (boardId, listId) => {
+  const Board = mongoose.model("board");
+  const List = mongoose.model("list");
+
+  return Board.findById(boardId).then(board => {
+    return List.findById(listId).then(list => {
+      board.lists.pull(list);
+      list.board = null;
+      return Promise.all([board.save(), list.save()]).then(
+        ([board, list]) => board
+      );
+    })
+  })
+}
+
 module.exports = mongoose.model("board", BoardSchema);
