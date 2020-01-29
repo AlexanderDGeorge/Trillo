@@ -6,7 +6,7 @@ export const IS_LOGGED_IN = gql`
 	}
 `;
 export const GET_USER_BOARDS = gql`
-	query userBoards($userId: String!) {
+	query userBoards($userId: ID!) {
 		user(id: $userId) {
 			boards{
 				id
@@ -17,7 +17,7 @@ export const GET_USER_BOARDS = gql`
 `;
 
 export const GET_BOARD_LISTS = gql`
-	query boardLists($boardId: String!){
+	query boardLists($boardId: ID!){
 		board(id: $boardID){
 			lists{
 				id
@@ -28,11 +28,11 @@ export const GET_BOARD_LISTS = gql`
 `;
 
 export const GET_LIST_CARDS = gql`
-	query listCards($listId: String!){
+	query listCards($listId: ID!){
 		list(id: $listId){
 			title
 			cards{
-				id
+				_id
 				title
 			}
 		}
