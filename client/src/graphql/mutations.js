@@ -26,3 +26,33 @@ export const REGISTER_USER = gql`
     }
   }
 `;
+
+export const NEW_LIST = gql`
+  mutation newList($title: String!) {
+    newList(title: $title) {
+      id
+      title
+    }
+  }
+`;
+
+export const UPDATE_LIST = gql`
+  mutation updateList($id: ID!, $title: String!) {
+    updateList(id: $id, title: $title) {
+      title
+    }
+  }
+`;
+
+export const ADD_BOARD_LIST = gql`
+  mutation addBoardList($boardId: String!, $listId: String!) {
+    addBoardList(boardId: $boardId, listId: $listId) {
+      id
+      title
+      lists {
+        id
+        title
+      }
+    }
+  }
+`;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import List from '../list/list';
 
 class BoardIndex extends Component {
   render() {
@@ -7,6 +8,7 @@ class BoardIndex extends Component {
         <h1>Boards</h1>
         <div>
           board links go here
+          <List/>
         </div>
       </div>
     )

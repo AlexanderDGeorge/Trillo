@@ -65,56 +65,6 @@ const mutation = new GraphQLObjectType({
         return AuthService.verifyUser(args);
       }
     },
-
-     newCard: {
-       type: CardType,
-        args: {
-          title: {type: GraphQLString },
-          description: {type: GraphQLString}
-        },
-        resolve(_,{title,description}){
-          return new Card({title,description}).save();
-        }
-     },
-
-     deleteCard: {
-       type: CardType,
-       args: {_id: {type:GraphQLID}},
-       resolve(_, {_id}) {
-         return Card.remove({_id});
-       }
-     },
-
-     updateCard: {
-       type: CardType,
-       args: {
-         id: {type: GraphQLID},
-         title: {type: GraphQLString},
-         description: {type: GraphQLString}
-       },
-       resolve(_,{id,title,description}){
-         return Card.updateCard(id,title,description)
-       }
-     },
-
-     newComment: {
-       type: CommentType,
-       args: {
-         body: {type: GraphQLString},
-       },
-       resolve(_,{body}){
-          return new Comment({body}).save();
-       }
-     },
-
-     deleteComment: {
-       type: CommentType,
-       args: {_id: {type: GraphQLID} },
-       resolve(_,{_id}){
-          return Comment.remove({_id});
-       }
-
-     },
     newBoard: {
       type: BoardType,
       args: {
@@ -170,7 +120,7 @@ const mutation = new GraphQLObjectType({
         if (id) newList.id = id;
         if (title) newList.title = title;
         return List.findByIdAndUpdate(
-          { id: id },
+          { _id: id },
           { $set: newList },
           { new: true },
           (err, list) => {
@@ -186,42 +136,51 @@ const mutation = new GraphQLObjectType({
         return List.deleteOne({ _id: id })
       }
     },
-    // newCard:{
-    //   type: CardType,
-    //   args: {
-    //     title: { type: GraphQLString }
-    //   },
-    //   resolve(_, { title }) {
-    //     return new List({ title }).save();
-    //   }
-    // },
-    // updateCard: {
-    //   type: CardType,
-    //   args: {
-    //     id: { type: new GraphQLNonNull(GraphQLID) },
-    //     title: { type: GraphQLString }
-    //   },
-    //   resolve(_, { id, title }) {
-    //     const newCard = {};
-    //     if (id) newCard.id = id;
-    //     if (title) newCard.title = title;
-    //     return Card.findByIdAndUpdate(
-    //       { id: id },
-    //       { $set: newCard },
-    //       { new: true },
-    //       (err, card) => {
-    //         return card;
-    //       }
-    //     )
-    //   }
-    // },
-    // deleteCard: {
-    //   type: CardType,
-    //   args: { id: { type: new GraphQLNonNull(GraphQLID) } },
-    //   resolve(_, { id }) {
-    //     return Card.deleteOne({ _id: id })
-    //   }
-    // },
+    newCard: {
+      type: CardType,
+      args: {
+        title: { type: GraphQLString },
+        description: { type: GraphQLString }
+      },
+      resolve(_, { title, description }) {
+        return new Card({ title, description }).save();
+      }
+    },
+    updateCard: {
+      type: CardType,
+      args: {
+        id: { type: GraphQLID },
+        title: { type: GraphQLString },
+        description: { type: GraphQLString }
+      },
+      resolve(_, { id, title, description }) {
+        return Card.updateCard(id, title, description)
+      }
+    },
+
+    deleteCard: {
+      type: CardType,
+      args: { _id: { type: GraphQLID } },
+      resolve(_, { _id }) {
+        return Card.remove({ _id });
+      }
+    },
+    newComment: {
+      type: CommentType,
+      args: {
+        body: { type: GraphQLString },
+      },
+      resolve(_, { body }) {
+        return new Comment({ body }).save();
+      }
+    },
+    deleteComment: {
+      type: CommentType,
+      args: { _id: { type: GraphQLID } },
+      resolve(_, { _id }) {
+        return Comment.remove({ _id });
+      }
+    },
     addBoardList: {
       type: BoardType,
       args: {

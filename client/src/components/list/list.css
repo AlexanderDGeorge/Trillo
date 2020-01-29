@@ -1,0 +1,12 @@
+.list-item{
+  display: flex;
+  flex-direction: column;
+  background-color: #EBECF0;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.list-item-title{
+  font-size: 16px;
+  background-color: transparent;
+}
