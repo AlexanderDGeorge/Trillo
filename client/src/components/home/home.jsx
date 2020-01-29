@@ -1,10 +1,12 @@
 import React from 'react';
+
 import NavBar from '../nav/nav_bar';
 import HomeContent from './home-content';
-import './home.css';
 import { useQuery } from 'react-apollo';
 import { IS_LOGGED_IN } from '../../graphql/queries';
-import BoardIndex from './board-index';
+import BoardList from '../board/board-list';
+
+import './home.css';
 
 function Home() {
   const { data } = useQuery(IS_LOGGED_IN);
@@ -19,7 +21,7 @@ function Home() {
     return (
       <div className="home">
         <NavBar/>
-        <BoardIndex/>
+        <BoardList/>
       </div>
     )
   }
