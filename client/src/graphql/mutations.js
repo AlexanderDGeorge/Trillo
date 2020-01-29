@@ -28,10 +28,10 @@ export const REGISTER_USER = gql`
 `;
 
 export const ADD_BOARD =gql`
-  mutation AddBoard($name: String!){
-    addBoard(name: $name){
-    _id
-    name
+  mutation AddBoard($title: String!){
+    newBoard(title: $title){
+    id
+    title
     }
   }
 `;

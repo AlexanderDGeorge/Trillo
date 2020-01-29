@@ -1,6 +1,9 @@
 body{
   background-color: #eee;
-  font-family: "Nunito SemiBold", sans-serif;
+  font-family: Helvetica Neue,sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  
 }
 #main h1{
   color: #444;
@@ -51,3 +54,15 @@ form button{
   bottom: 10px;
   left:10px;
 }
+
+.home-container{
+  min-height: calc(100vh - 40px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+div{
+  /* display:block; */
+}
+
+

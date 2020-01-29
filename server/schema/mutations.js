@@ -1,17 +1,13 @@
 const mongoose = require("mongoose");
-<<<<<<< HEAD
-const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID ,GraphQLNonNull} = graphql;
-
-=======
 const graphql = require("graphql");
 const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID, GraphQLNonNull } = graphql;
->>>>>>> 1e61388336efb93e75b01a91dbde2fc351cafb1b
 const AuthService = require("../services/auth");
 
+const models = require("../models/index");
 const UserType = require("./types/user_type");
 const BoardType = require("./types/board_type");
 const ListType = require("./types/list_type");
-const models = require("../models/index");
+
 const Board = mongoose.model("board")
 const List = mongoose.model("list");
 const Card = mongoose.model("card");
