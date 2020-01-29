@@ -26,3 +26,31 @@ export const REGISTER_USER = gql`
     }
   }
 `;
+
+export const CREATE_CARD = gql`
+   mutation CreateCard($title: String!, $description: String!) {
+      newCard(title: $title, description: $description) {
+        id
+        title
+        description
+      }
+   }
+`;
+
+export const DELETE_CARD = gql`
+   mutation DeleteCard($id: ID!){
+      deleteCard(_id:$id){
+        id
+      }
+    }
+`;
+
+export const CREATE_COMMENT = gql`
+    mutation CreateComment($body: String!) {
+      newComment(body: $body) {
+        id
+        body
+      }
+    }
+
+`;

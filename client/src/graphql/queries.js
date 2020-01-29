@@ -5,3 +5,24 @@ export const IS_LOGGED_IN = gql`
         isLoggedIn @client
     }
 `;
+
+export const FETCH_CARDS = gql`
+    query FetchCards {
+        cards {
+            _id
+            title
+            description
+        }
+    }
+
+`;
+
+export const FETCH_COMMENTS = gql`
+    query FetchComments{
+        comments {
+            _id
+            body
+        }
+    }
+
+`;
