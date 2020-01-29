@@ -27,6 +27,15 @@ export const REGISTER_USER = gql`
   }
 `;
 
+export const ADD_BOARD =gql`
+  mutation AddBoard($title: String!){
+    newBoard(title: $title){
+    id
+    title
+    }
+  }
+`;
+
 export const NEW_LIST = gql`
   mutation newList($title: String!) {
     newList(title: $title) {
@@ -55,4 +64,4 @@ export const ADD_BOARD_LIST = gql`
       }
     }
   }
-`;
+  `;
