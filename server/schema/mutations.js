@@ -98,7 +98,9 @@ const mutation = new GraphQLObjectType({
       type: BoardType,
       args: { id: { type: GraphQLID } },
       resolve(_, { id }) {
-        return Board.deleteOne({ _id: id });
+        return Board.deleteOne({ _id: id }).then( (board)=>{
+          return {_id: id} 
+        });
       }
     },
     newList: {

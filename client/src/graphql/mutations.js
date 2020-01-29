@@ -65,3 +65,11 @@ export const ADD_BOARD_LIST = gql`
     }
   }
   `;
+
+export const DELETE_BOARD = gql`
+    mutation DeleteBoard($id: ID) {
+      deleteBoard(id: $id) {
+        id
+      }
+    }
+  `;
