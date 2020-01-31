@@ -142,7 +142,7 @@ export const REMOVE_BOARD_LIST = gql`
         title
       }
     }
-  `;
+  }`;
 
 export const UPDATE_USER = gql`
  mutation UpdateUser($id:ID!, $boardId: ID ){

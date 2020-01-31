@@ -16,7 +16,7 @@ const Board = mongoose.model("board")
 const List = mongoose.model("list");
 const Card = mongoose.model("card");
 const Comment = mongoose.model("comment");
-const User = mongoose.model("user");
+
 
 const mutation = new GraphQLObjectType({
   name: "Mutation",

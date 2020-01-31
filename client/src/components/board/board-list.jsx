@@ -8,39 +8,7 @@ function BoardList() {
   //const id = ({properties: { token }}) => {[convertToken] = useMutation(CONVERT_TOKEN)}
   const id = localStorage.getItem("id");
   const { loading, data } = useQuery(GET_USER_BOARDS, { variables: { id } });
-
-//   render(){
-//     return (
-//       <Query query={FETCH_BOARDS}>
-//         {
-//           ({ loading, error, data }) => {
-//             if (loading) return <div>Loading boards ...</div>;
-//             if (error) return `Error! ${error.message}`;
-//             return (
-//               <div className="container">
-//                 {data.boards.map(board => (
-//                   <div className="card" key={board.id}>
-                  
-//                       <DeleteBoard id={board.id} />
-                  
-//                     <br></br>
-//                     <Link to={`/boards/${board.id}`} >
-//                       <div className="container" >
-//                         <span className="board-tile-details" >
-//                           {board.title}
-//                         </span>
-//                       </div>
-//                     </Link>
-//                   </div>
-//                 ))}
-//               </div>
-//             );
-//           }
-//         }
-//       </Query>
-//     );
-//  }
-// };
+debugger
   if (loading){
     return null;
   } else {
