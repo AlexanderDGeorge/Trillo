@@ -1,5 +1,5 @@
 import React from "react";
-import { useMutation, useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/react-hooks';
 import { GET_USER_BOARDS } from "../../graphql/queries";
 import { Link } from "react-router-dom";
 

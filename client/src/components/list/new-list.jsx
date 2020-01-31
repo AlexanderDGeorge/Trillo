@@ -3,7 +3,7 @@ import { useMutation } from 'react-apollo';
 import { NEW_LIST, ADD_BOARD_LIST } from '../../graphql/mutations';
 import { FETCH_BOARD } from '../../graphql/queries';
 
-function ListNew(props){
+function NewList(props){
   const [newList] = useMutation(NEW_LIST);
   const [addBoardList] = useMutation(ADD_BOARD_LIST, {
     update(cache, { data: { addBoardList } }) {
@@ -19,7 +19,7 @@ function ListNew(props){
 
   function handleSubmit(e){
     e.preventDefault();
-    newList({ variables: { title: title }}).then(
+    newList({ variables: { title }}).then(
       ({ data }) => addBoardList({ variables: {
         boardId: props.boardId, 
         listId: data.newList.id
@@ -58,4 +58,4 @@ function ListNew(props){
   }
 }
 
-export default ListNew;
+export default NewList;

@@ -1,6 +1,6 @@
 import React from 'react';
 import ListItem from './list-item';
-import ListNew from './list-new';
+import NewList from './new-list';
 
 function List(props) {
   return (
@@ -8,7 +8,7 @@ function List(props) {
       {props.lists.map(list => (
         <ListItem listId={list.id} boardId={props.boardId}/>
       ))}
-      <ListNew boardId={props.boardId} />
+      <NewList boardId={props.boardId} />
     </div>
   )
 }

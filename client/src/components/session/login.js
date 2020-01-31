@@ -35,7 +35,7 @@ class Login extends Component {
             const { token, id } = data.login;
             localStorage.setItem("auth-token", token);
             localStorage.setItem("id", id)
-            this.props.history.push("/");
+            this.props.history.push("/boards");
           }}
           update={(client, data) => this.updateCache(client, data)}
         >
