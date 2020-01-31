@@ -2,6 +2,7 @@ import React from "react";
 import { useQuery } from '@apollo/react-hooks';
 import { GET_USER_BOARDS } from "../../graphql/queries";
 import { Link } from "react-router-dom";
+import NavBar from "../nav/nav_bar";
 
 
 function BoardList() {
@@ -13,7 +14,8 @@ function BoardList() {
     return null;
   } else {
     return(
-      <div className="board-list">
+      <div className="board-list home">
+        <NavBar/>
         {data.user.boards.map(board => (
           <Link to={`/boards/${board.id}`}>
             {board.title}

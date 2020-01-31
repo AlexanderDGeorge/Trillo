@@ -6,6 +6,7 @@ import Login from './session/login';
 import Register from './session/register';
 import Home from './home/home';
 import BoardDetail from'./board/board-detail';
+import BoardList from "./board/board-list";
 // import Board from './board/board';
 
 export default () => (
@@ -13,7 +14,7 @@ export default () => (
     <AuthRoute exact path="/login" component={Login} />
     <AuthRoute exact path="/register" component={Register} />
     <ProtectedRoute path="/boards/:boardId" component={BoardDetail} />
-    {/* <ProtectedRoute path="/boards" component={Board} /> */}
+    <ProtectedRoute path="/boards" component={BoardList} />
     <Route path="/" component={Home} />
   </Switch>
 );
