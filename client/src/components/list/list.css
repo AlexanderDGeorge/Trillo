@@ -9,21 +9,68 @@
   background-color: #EBECF0;
   padding: 10px;
   border-radius: 5px;
-  max-width: 200px;
+  width: 200px;
   margin: 10px;
 }
 
+.list-item-header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .list-item-title{
-  font-size: 16px;
   background-color: transparent;
-  padding: 5px;
-  margin: 5px;
+  margin: 5px 5px 5px 0;
+  width: 150px;
   font-size: 18px;
   font-weight: 600;
+  overflow: hidden;
 }
 
 .list-item-title:focus{
   background-color: white;
+}
+
+.list-add{
+  display: flex;
+  flex-direction: column;
+  background-color: #EBECF0;
+  opacity: 0.5;
+  padding: 10px;
+  border-radius: 5px;
+  width: 220px;
+  margin: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.list-add-form{
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #EBECF0;
+  padding: 10px;
+  border-radius: 5px;
+  width: 200px;
+  margin: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.list-add-form input {
+  border: none;
+  display: block;
+  width: 100%;
+  padding: 10px;
+}
+
+.list-add-form button {
+  background-color: #61BD4F;
+  color: white;
+  border-radius: 5px;
+  padding: 5px;
+  margin-top: 5px;
 }
 
 .list-item-card{

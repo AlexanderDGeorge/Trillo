@@ -8,6 +8,7 @@ import AddBoard from './new-board';
 
 class Board extends Component{
   render(){
+    console.log(this.props);
     return(
       <div className="home-container">
         <h1>Personal Boards</h1>
