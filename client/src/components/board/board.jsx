@@ -8,7 +8,6 @@ import NavBar from '../nav/nav_bar';
 
 class Board extends Component{
   render(){
-    console.log(this.props);
     return(
       <div >
         <NavBar />

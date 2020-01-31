@@ -245,8 +245,30 @@ const mutation = new GraphQLObjectType({
         return List.addCard(listId, cardId);
       }
     },
+    newUserBoard: {
+      type: UserType,
+      args: {
+        userId: { type: new GraphQLNonNull(GraphQLID) },
+        title: { type: new GraphQLNonNull(GraphQLString) }
+      },
+      resolve(_, { userId, title }) {
+        return new Board({ title }).save().then(board => {
+          return User.addBoard(userId, board._id);
+        })
+      }
+    },
+    deleteUserBoard:{
+      type:UserType,
+      args:{
+        userId: {type: new GraphQLNonNull(GraphQLID) },
+        boardId: { type: new GraphQLNonNull(GraphQLID) }
+      },
+      resolve(_,{ userId, boardId}){
+        return User.removeBoard(userId,boardId);
+      }
+    },
     updateUserBoard: {
-      type: BoardType,
+     type: BoardType,
       args: {
         userId: { type: new GraphQLNonNull(GraphQLID) },
         boardId: { type: new GraphQLNonNull(GraphQLID) }

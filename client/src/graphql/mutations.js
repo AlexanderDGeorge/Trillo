@@ -90,6 +90,18 @@ export const DELETE_BOARD = gql`
     }
   }
 `;
+export const DELETE_USER_BOARD =gql`
+ mutation deleteUserBoard($userId: ID!, $boardId: ID! ){
+  deleteUserBoard(userId: $userId,boardId: $boardId){
+    id
+    name
+    boards{
+      id
+      title
+    }
+  }
+}
+`;
 
 export const NEW_LIST = gql`
   mutation newList($title: String!) {
@@ -164,7 +176,21 @@ export const UPDATE_USER_BOARD = gql`
     }
   }
   `;
+
+export const ADD_USER_BOARD = gql`
+  mutation newUserBoard($userId: ID!, $title: String!) {
+    newUserBoard(userId: $userId, title: $title) {
+      id
+      name
+      boards{
+        id
+        title
+      }
+    }
+  }
+  `;
   
+
 
 
 
