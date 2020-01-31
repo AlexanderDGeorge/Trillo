@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { GET_LIST_CARDS } from '../../graphql/queries';
 import { UPDATE_LIST } from '../../graphql/mutations';
-import ListDelete from './list-delete';
+import DeleteList from './delete-list';
 import Loading from '../loading/loading';
 import './list.css';
 
@@ -33,7 +33,7 @@ function ListItem(props) {
             defaultValue={data.list.title}
             onChange={e => handleChange(e)} 
           />
-          <ListDelete listId={props.listId} boardId={props.boardId}/>
+          <DeleteList listId={props.listId} boardId={props.boardId}/>
         </div>
         <div className="list-item-card">
           card components go here

@@ -62,6 +62,15 @@ query FetchBoard($id: ID!){
 }
 `;
 
+export const FETCH_LIST = gql`
+    query FetchList($id: ID!){
+        list(id: $id){
+            id
+            title
+        }
+    }
+`;
+
 
 export const GET_USER_BOARDS = gql`
 	query userBoards($id: ID!) {

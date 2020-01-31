@@ -86,8 +86,8 @@ export const DELETE_COMMENT = gql`
 export const ADD_BOARD =gql`
   mutation AddBoard($title: String!){
     newBoard(title: $title){
-    id
-    title
+      id
+      title
     }
   }
 `;
@@ -96,6 +96,7 @@ export const DELETE_BOARD = gql`
   mutation DeleteBoard($id: ID) {
     deleteBoard(id: $id) {
       id
+      title
     }
   }
 `;
@@ -112,6 +113,7 @@ export const NEW_LIST = gql`
 export const UPDATE_LIST = gql`
   mutation updateList($id: ID!, $title: String!) {
     updateList(id: $id, title: $title) {
+      id
       title
     }
   }
@@ -131,9 +133,6 @@ export const ADD_BOARD_LIST = gql`
     addBoardList(boardId: $boardId, listId: $listId) {
       id
       title
-      users {
-        name
-      }
       lists {
         id
         title
