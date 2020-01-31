@@ -11,13 +11,12 @@ const CardType = require("./types/card_type");
 const CommentType = require("./types/comment_type");
 
 const models = require("../models/index");
-
+const User = mongoose.model("user");
 const Board = mongoose.model("board")
 const List = mongoose.model("list");
 const Card = mongoose.model("card");
 const Comment = mongoose.model("comment");
 const User = mongoose.model("user");
-
 
 const mutation = new GraphQLObjectType({
   name: "Mutation",
@@ -65,6 +64,17 @@ const mutation = new GraphQLObjectType({
       },
       resolve(_, args) {
         return AuthService.verifyUser(args);
+      }
+    },
+    convertToken: {
+      type: UserType,
+      args: {
+        token: {
+          type: GraphQLString
+        }
+      },
+      resolve(_, args) {
+        return AuthService.convertToken(args);
       }
     },
     newBoard: {
@@ -137,7 +147,7 @@ const mutation = new GraphQLObjectType({
       type: ListType,
       args: { id: { type: new GraphQLNonNull(GraphQLID) } },
       resolve(_, { id }) {
-        return List.deleteOne({ _id: id })
+        return List.findOneAndDelete({ _id: id })
       }
     },
     newCard: {
@@ -183,6 +193,26 @@ const mutation = new GraphQLObjectType({
       args: { _id: { type: GraphQLID } },
       resolve(_, { _id }) {
         return Comment.remove({ _id });
+      }
+    },
+    addUserBoard: {
+      type: UserType,
+      args: {
+        userId: { type: new GraphQLNonNull(GraphQLID) },
+        boardId: { type: new GraphQLNonNull(GraphQLID) }
+      },
+      resolve(_, { userId, boardId }) {
+        return User.addBoard(userId, boardId)
+      }
+    },
+    removeUserBoard: {
+      type: UserType,
+      args: {
+        userId: { type: new GraphQLNonNull(GraphQLID) },
+        boardId: { type: new GraphQLNonNull(GraphQLID) }
+      },
+      resolve(_, { userId, boardId }) {
+        return User.removeBoard(userId, boardId)
       }
     },
     addBoardList: {

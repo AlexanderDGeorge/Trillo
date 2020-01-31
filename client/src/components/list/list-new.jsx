@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { useMutation } from 'react-apollo';
 import { NEW_LIST, ADD_BOARD_LIST } from '../../graphql/mutations';
 import { FETCH_BOARD } from '../../graphql/queries';
-import BoardList from '../board/board-list';
 
-function NewList(props){
+function ListNew(props){
   const [newList] = useMutation(NEW_LIST);
   const [addBoardList] = useMutation(ADD_BOARD_LIST, {
     update(cache, { data: { addBoardList } }) {
@@ -31,7 +30,10 @@ function NewList(props){
 
   if (open){
     return (
-      <form onSubmit={e => handleSubmit(e)}>
+      <form 
+        className="list-add-form"
+        onSubmit={e => handleSubmit(e)}
+      >
         <input 
           type="text"
           placeholder="Enter list title..."
@@ -47,11 +49,13 @@ function NewList(props){
     )
   } else {
     return (
-      <button onClick={() => setOpen(true)}>
+      <button 
+        className="list-add"
+        onClick={() => setOpen(true)}>
         Add another list
       </button>
     )
   }
 }
 
-export default NewList;
+export default ListNew;

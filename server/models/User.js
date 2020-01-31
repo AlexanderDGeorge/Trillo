@@ -23,9 +23,41 @@ const UserSchema = new Schema({
   board:{
     type: Schema.Types.ObjectId,
     ref: "board"
-  }
+  },
+  boards: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "board"
+    }
+  ]
 });
 
+UserSchema.statics.addBoard = (userId, boardId) => {
+  const User = mongoose.model("user");
+  const Board = mongoose.model("board");
 
+  return User.findById(userId).then(user => {
+    return Board.findById(boardId).then(board => {
+      user.boards.push(board);
+      return Promise.all([user.save(), board.save()]).then(
+        ([user, board]) => user
+      );
+    })
+  })
+}
+
+UserSchema.statics.removeBoard = (userId, boardId) => {
+  const User = mongoose.model("user");
+  const Board = mongoose.model("board");
+
+  return User.findById(userId).then(user => {
+    return Board.findById(boardId).then(board => {
+      user.boards.pull(board);
+      return Promise.all([user.save(), board.save()]).then(
+        ([user, board]) => user
+      );
+    })
+  })
+}
 
 module.exports = mongoose.model("user", UserSchema);

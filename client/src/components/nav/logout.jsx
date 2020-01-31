@@ -9,6 +9,7 @@ function Logout(){
         onClick={e => {
           e.preventDefault();
           localStorage.removeItem("auth-token");
+          localStorage.removeItem("id");
           client.writeData({ data: { isLoggedIn: false } });
         }}
       >

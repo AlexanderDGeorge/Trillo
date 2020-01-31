@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const modelIndex = require('../../models/index');
 const graphql = require("graphql");
 
 const {
@@ -11,6 +12,7 @@ const {
 
 const models = require("../../models/index");
 const User = mongoose.model("user");
+const UserType = require("./user_type");
 const Board = mongoose.model("board");
 const List = mongoose.model("list");
 const ListType = require("./list_type");

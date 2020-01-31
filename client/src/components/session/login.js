@@ -21,7 +21,7 @@ class Login extends Component {
   updateCache(client, { data }) {
     console.log(data);
     client.writeData({
-      data: { isLoggedIn: data.login.loggedIn }
+      data: { isLoggedIn: data.login.loggedIn, id: data.login.id }
     });
   }
 
@@ -32,8 +32,9 @@ class Login extends Component {
         <Mutation
           mutation={LOGIN_USER}
           onCompleted={data => {
-            const { token } = data.login;
+            const { token, id } = data.login;
             localStorage.setItem("auth-token", token);
+            localStorage.setItem("id", id)
             this.props.history.push("/");
           }}
           update={(client, data) => this.updateCache(client, data)}

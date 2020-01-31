@@ -4,9 +4,12 @@ import { FETCH_BOARD } from '../../graphql/queries';
 import List from '../list/list';
 import NavBar from '../nav/nav_bar';
 import User from '../user/user'
+import Loading from '../loading/loading';
 
 class BoardDetail extends Component{
+  
   render() {
+    console.log(this.props);
     const boardId = this.props.match.params.boardId
     return(
       <Query 
@@ -14,7 +17,7 @@ class BoardDetail extends Component{
       variables={{ id: boardId}}
       >
         {({loading, error, data})=>{
-          if(loading) return <h1>Loading...</h1>;
+          if(loading) return <Loading/>;
           return(
             <div className="board-detail">
               <NavBar/>

@@ -1,5 +1,5 @@
 import gql from "graphql-tag";
-import BoardList from "../components/board/board-list";
+
 
 export const IS_LOGGED_IN = gql`
     query IsUserLoggedIn {
@@ -37,15 +37,11 @@ export const FETCH_BOARDS = gql`
     }
 `;
 
-export const FETCH_BOARD =gql`
+export const FETCH_BOARD = gql`
 query FetchBoard($id: ID!){
     board(id: $id){
         id
         title
-        users{
-            id
-            name
-        }
         lists{
             id
             title
@@ -55,6 +51,16 @@ query FetchBoard($id: ID!){
 `;
 
 
+export const GET_USER_BOARDS = gql`
+	query userBoards($id: ID!) {
+		user(id: $id) {
+			boards{
+				id
+				title
+			}
+		}
+	}
+`;
 
 export const GET_BOARD_LISTS = gql`
 	query boardLists($boardId: ID!){
