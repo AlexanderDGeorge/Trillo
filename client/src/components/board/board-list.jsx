@@ -1,9 +1,15 @@
 import React from "react";
 import { useQuery } from '@apollo/react-hooks';
+import { FETCH_BOARDS } from "../../graphql/queries";
 import { GET_USER_BOARDS } from "../../graphql/queries";
+import { Query } from "react-apollo";
 import { Link } from "react-router-dom";
+<<<<<<< HEAD
+import DeleteBoard from './delete-board';
+=======
 import NavBar from "../nav/nav_bar";
 import AddBoard from "./new-board";
+>>>>>>> f096f2b42190ac1b8998ea39072ebc7b5b0aec04
 
 
 function BoardList() {
@@ -15,12 +21,29 @@ function BoardList() {
     return null;
   } else {
     return(
-      <div className="board-list home">
-        <NavBar/>
+      // <div className="board-list">
+      //   {data.user.boards.map(board => (
+      //     <Link to={`/boards/${board.id}`}>
+      //       {board.title}
+      //     </Link>
+      //   ))}
+      // </div>
+
+      <div>
         {data.user.boards.map(board => (
-          <Link to={`/boards/${board.id}`}>
-            {board.title}
-          </Link>
+          <div className="card" key={board.id}>
+            <span className="deleteBtn">
+              <DeleteBoard id={board.id} />
+            </span>
+            <br></br>
+            <Link to={`/boards/${board.id}`} key={board.id}>
+              <div className="container" >
+                <span className="board-tile-details">
+                  {board.title}
+                </span>
+              </div>
+            </Link>
+          </div>
         ))}
         <AddBoard />
       </div>
@@ -38,7 +61,8 @@ function BoardList() {
 
 //   render(){
 //     return (
-//       <Query query={FETCH_BOARDS}>
+      
+//       <Query query={GET_USER_BOARDS} variables={id}>
 //         {
 //           ({ loading, error, data }) => {
 //             if (loading) return <div>Loading boards ...</div>;

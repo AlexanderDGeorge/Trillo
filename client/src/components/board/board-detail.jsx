@@ -3,6 +3,7 @@ import { Query } from "react-apollo";
 import { FETCH_BOARD } from '../../graphql/queries';
 import List from '../list/list';
 import NavBar from '../nav/nav_bar';
+import User from '../user/user'
 import Loading from '../loading/loading';
 
 class BoardDetail extends Component{
@@ -19,10 +20,16 @@ class BoardDetail extends Component{
           return(
             <div className="board-detail">
               <NavBar/>
-              <List 
-                lists={data.board.lists}
-                boardId={boardId}
-              />
+              <ul>
+                 <User boardId={boardId} users={data.board.users} />
+              </ul>
+              <div>
+                <List
+                  lists={data.board.lists}
+                  boardId={boardId}
+                />
+              </div>
+             
             </div>
           );
         }}

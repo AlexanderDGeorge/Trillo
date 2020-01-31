@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Mutation } from "react-apollo";
 
 import { DELETE_BOARD } from '../../graphql/mutations';
-import { FETCH_BOARDS } from '../../graphql/queries';
+import { DELETE_USER_BOARD } from '../../graphql/mutations';
+import { GET_USER_BOARDS } from '../../graphql/queries';
 
 class  DeleteBoard extends Component{
   constructor(props){
@@ -14,34 +15,40 @@ class  DeleteBoard extends Component{
   }
 
   updateCache(cache, { data }) {
-    let boards;
+    let user;
+    const id = localStorage.getItem("id");
+    
     try {
-      boards = cache.readQuery({ query: FETCH_BOARDS })
+      user = cache.readQuery({ query: GET_USER_BOARDS, variables: { id } })
+      
     } catch (err) {
       return;
     } 
-    if (boards) {
-      let boardArray = (Object.assign(boards.boards));
+    if (user) {
       cache.writeQuery({
-        query: FETCH_BOARDS,
-        data: { boards: boardArray.filter(item => item.id !== this.props.id) }
+        query: GET_USER_BOARDS,
+        variables: { id },
+        data:{user: data.deleteUserBoard}
       });
     }
   }
 
   render(){
   return (
-    <Mutation mutation={DELETE_BOARD}
+    <Mutation mutation={DELETE_USER_BOARD}
       onError={err => this.setState({ message: err.message })}
       update={(cache, data) => this.updateCache(cache, data)}
       >
       {(deleteBoard,{ data }) =>(
         <a onClick ={ e => {
+          
           e.preventDefault();
-          deleteBoard({ variables: { id: this.props.id }});
+          deleteBoard({ variables: { userId: localStorage.getItem("id"), boardId: this.props.id }});
         }}
         >
-          <p>x</p>
+          <div className="deleteBtn tooltip">X
+            <span className="tooltiptext">delete</span>
+          </div>
         </a>
       )}
     </Mutation>

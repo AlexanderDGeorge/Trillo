@@ -106,3 +106,14 @@ export const GET_LIST_CARDS = gql`
 		}
 	}
 `;
+
+export const GET_BOARD_USERS = gql`
+	query boardUsers($boardId: ID!){
+		board(id: $boardId){
+			users{
+				id
+				name
+			}
+		}
+	}
+`;

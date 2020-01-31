@@ -6,6 +6,12 @@ const BoardSchema = new Schema({
     type: String,
     require: true
   },
+  users: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "user"
+    }
+  ],
   lists: [
     {
       type: Schema.Types.ObjectId,
@@ -43,5 +49,34 @@ BoardSchema.statics.removeList = (boardId, listId) => {
     })
   })
 }
+
+
+BoardSchema.statics.updateUserBoard = (userId, boardId) => {
+  const User = mongoose.model("user");
+  const Board = mongoose.model("board");
+
+  return User.findById(userId).then(user => {
+    if (!user.board) {
+     return Board.findById(boardId).then(newBoard => {
+      user.board = newBoard;
+      newBoard.users.push(user);
+
+      return Promise.all([user.save(), newBoard.save()]).then(
+        ([user, newBoard]) => user
+        );
+      });
+    }
+    else{
+      return Board.findById(boardId).then(newBoard => {
+        newBoard.users.pull(user);
+        user.board = null;
+        return Promise.all([user.save(), newBoard.save()]).then(
+          ([user, newBoard]) => user
+        );
+      });
+    }
+  });
+};
+
 
 module.exports = mongoose.model("board", BoardSchema);
