@@ -10,7 +10,7 @@ export const IS_LOGGED_IN = gql`
 export const FETCH_CARDS = gql`
     query FetchCards {
         cards {
-            _id
+            id
             title
             description
         }
@@ -18,10 +18,22 @@ export const FETCH_CARDS = gql`
 
 `;
 
+export const FETCH_CARD = gql`
+    query FetchCard($id: ID!) {
+        card(id: $id) {
+            id
+            title
+            description
+        }
+    }
+
+
+`;
+
 export const FETCH_COMMENTS = gql`
     query FetchComments{
         comments {
-            _id
+            id
             body
         }
     }
@@ -88,7 +100,8 @@ export const GET_LIST_CARDS = gql`
 			title
 			cards{
 				_id
-				title
+                title,
+                description
 			}
 		}
 	}

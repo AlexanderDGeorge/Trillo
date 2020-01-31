@@ -47,6 +47,16 @@ export const CREATE_CARD = gql`
    }
 `;
 
+export const UPDATE_CARD = gql`
+   mutation UpdateCard($id: ID!, $title: String!, $description: String!){
+     updateCard(id:$id, title:$title, description:$description){
+       title
+       description
+     }
+   }
+
+`;
+
 export const DELETE_CARD = gql`
    mutation DeleteCard($id: ID!){
       deleteCard(id:$id){
