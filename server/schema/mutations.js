@@ -159,15 +159,38 @@ const mutation = new GraphQLObjectType({
         return new Card({ title, description }).save();
       }
     },
+    // updateCard: {
+    //   type: CardType,
+    //   args: {
+    //     id: { type: GraphQLID },
+    //     title: { type: GraphQLString },
+    //     description: { type: GraphQLString }
+    //   },
+    //   resolve(_, { id, title, description }) {
+    //     return Card.updateCard(id, title, description)
+    //   }
+    // },
+
     updateCard: {
       type: CardType,
       args: {
-        id: { type: GraphQLID },
+        id: { type: new GraphQLNonNull(GraphQLID) },
         title: { type: GraphQLString },
-        description: { type: GraphQLString }
+        description: {type: GraphQLString}
       },
+
       resolve(_, { id, title, description }) {
-        return Card.updateCard(id, title, description)
+        const newCard = {};
+        if (id) newCard.id = id;
+        if (title) newCard.title = title;
+        return Card.findByIdAndUpdate(
+          { _id: id },
+          { $set: newCard },
+          { new: true },
+          (err, card) => {
+            return card;
+          }
+        )
       }
     },
 

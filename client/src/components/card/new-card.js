@@ -77,8 +77,8 @@ class AddCard extends React.Component {
                 <div className="card-field">
                     <label>Enter a title for this card</label>
                     <input type="text" value={this.state.title} onChange={this.update("title")}></input>
-                    <label>Add a more detailed description</label>
-                    <input type="text" value={this.state.description} onChange={this.update("description")}></input>
+                    {/* <label>Add a more detailed description</label>
+                    <input type="text" value={this.state.description} onChange={this.update("description")}></input> */}
                 </div>
                 <button> Add Card</button>
             </form>    
@@ -88,3 +88,5 @@ class AddCard extends React.Component {
     }
 
 }
+
+export default AddCard;
