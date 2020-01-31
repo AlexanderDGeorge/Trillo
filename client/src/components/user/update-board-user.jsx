@@ -27,7 +27,7 @@ class UpdateUser extends Component {
     if (result) {
       
       let userArray = (Object.assign(result.board.users));
-      debugger
+      
       cache.writeQuery({
         query: FETCH_BOARD,
         variables: { id: this.props.boardId },
