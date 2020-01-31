@@ -38,19 +38,19 @@ const CardSchema = new Schema({
 
     
 
-CardSchema.statics.updateCard = (id,newTitle,newDescription) => {
-    const Card = mongoose.model("card");
+// CardSchema.statics.updateCard = (id,newTitle,newDescription) => {
+//     const Card = mongoose.model("card");
 
-    return Card.findById(id)
-       .then(card =>{
-           if(card){
-               card.title = newTitle;
-               card.description = newDescription;
-           }
-           else{
-               throw new Error("The card does not exist");
-           }
-       })
-}
+//     return Card.findById(id)
+//        .then(card =>{
+//            if(card){
+//                card.title = newTitle;
+//                card.description = newDescription;
+//            }
+//            else{
+//                throw new Error("The card does not exist");
+//            }
+//        })
+// }
 
-module.exports = mongoose.model("card", CardSchema);
+ module.exports = mongoose.model("card", CardSchema);
