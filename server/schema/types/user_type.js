@@ -8,10 +8,12 @@ const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLID,
-  GraphQLBoolean
+  GraphQLBoolean,
+  GraphQLList
 } = graphql;
 
-// const modelIndex = require('../../models/index');
+const models = require("../../models/index");
+const User = mongoose.model("user")
 
 const UserType = new GraphQLObjectType({
   name: "UserType",
@@ -31,10 +33,12 @@ const UserType = new GraphQLObjectType({
     token: {
       type: GraphQLString
     },
-    board:{
-      type: BoardType,
-      resolve(parentValue,args){
-        return Board.findById(parentValue.boardId)
+    boards:{
+      type: new GraphQLList(BoardType),
+      resolve(parentValue) {
+        return User.findById(parentValue.id)
+          .populate("boards")
+          .then(user => user.boards);
       }
     }
   })
