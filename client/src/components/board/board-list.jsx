@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { GET_USER_BOARDS } from "../../graphql/queries";
 import { Link } from "react-router-dom";
 import NavBar from "../nav/nav_bar";
+import AddBoard from "./new-board";
 
 
 function BoardList() {
@@ -21,6 +22,7 @@ function BoardList() {
             {board.title}
           </Link>
         ))}
+        <AddBoard />
       </div>
     )
   }
