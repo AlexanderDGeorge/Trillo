@@ -10,7 +10,7 @@ class AddBoard extends Component{
     super(props);
     this.state={
       title: '',
-      message: ''
+    
     }
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -51,8 +51,10 @@ class AddBoard extends Component{
   clearData() {
     this.setState({
       title: ''
+     
     })
   }
+
 
   render(){
     return(
@@ -71,14 +73,12 @@ class AddBoard extends Component{
           <div>
             <form onSubmit={ e => this.handleSubmit(e, newBoard)}>
               <div className="field">
-                <label> Title </label>
-                <input type="text"
+                <input type="text" placeholder="Board name"
                   value={this.state.title}
                   onChange={this.update("title")} />
               </div>
-              <button>+</button>
+              <button disabled={!this.state.title} >+</button>
             </form>
-            <p>{this.state.message}</p>
           </div>
           )}
 

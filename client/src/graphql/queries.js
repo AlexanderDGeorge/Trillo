@@ -55,16 +55,6 @@ query FetchBoard($id: ID!){
 `;
 
 
-export const GET_USER_BOARDS = gql`
-	query userBoards($userId: ID!) {
-		user(id: $userId) {
-			boards{
-				id
-				title
-			}
-		}
-	}
-`;
 
 export const GET_BOARD_LISTS = gql`
 	query boardLists($boardId: ID!){
@@ -84,6 +74,17 @@ export const GET_LIST_CARDS = gql`
 			cards{
 				_id
 				title
+			}
+		}
+	}
+`;
+
+export const GET_BOARD_USERS = gql`
+	query boardUsers($boardId: ID!){
+		board(id: $boardId){
+			users{
+				id
+				name
 			}
 		}
 	}

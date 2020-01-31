@@ -21,20 +21,20 @@ class BoardList extends React.Component{
             if (loading) return <div>Loading boards ...</div>;
             if (error) return `Error! ${error.message}`;
             return (
-             <div>
+              <div className="container">
                 {data.boards.map(board => (
-                  <div className="card">
-                <span  className="deleteBtn">
+                  <div className="card" key={board.id}>
+                  
                       <DeleteBoard id={board.id} />
-                </span>
-                  <br></br>
-                   <Link to={`/boards/${board.id}`} key={board.id}>
+                  
+                    <br></br>
+                    <Link to={`/boards/${board.id}`} >
                       <div className="container" >
-                        <span className="board-tile-details">
+                        <span className="board-tile-details" >
                           {board.title}
                         </span>
                       </div>
-                  </Link>
+                    </Link>
                   </div>
                 ))}
               </div>

@@ -34,7 +34,7 @@ const UserType = new GraphQLObjectType({
     board:{
       type: BoardType,
       resolve(parentValue,args){
-        return Board.findById(parentValue.boardId)
+        return Board.findById(parentValue.board)
       }
     }
   })

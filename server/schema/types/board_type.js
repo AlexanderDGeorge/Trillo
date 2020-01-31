@@ -25,7 +25,10 @@ const BoardType = new GraphQLObjectType({
     users: {
       type: new GraphQLList(require('./user_type')),
       resolve(parentValue, _) {
-        return User.find({ boardId: parentValue.id })}
+        return Board.findById(parentValue.id)
+          .populate("users")
+          .then(board => board.users);
+       }
       },
     lists: {
       type: new GraphQLList(ListType),

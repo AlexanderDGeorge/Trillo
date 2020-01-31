@@ -41,7 +41,9 @@ class  DeleteBoard extends Component{
           deleteBoard({ variables: { id: this.props.id }});
         }}
         >
-          <p>x</p>
+          <div className="deleteBtn tooltip">X
+            <span className="tooltiptext">delete</span>
+          </div>
         </a>
       )}
     </Mutation>

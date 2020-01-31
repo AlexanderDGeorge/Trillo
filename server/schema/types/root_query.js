@@ -90,6 +90,13 @@ const RootQuery = new GraphQLObjectType({
         return List.find({});
       }
     },
+    boardUsers: {
+      type: new GraphQLList(UserType) ,
+      args: { boardId: { type: new GraphQLNonNull(GraphQLID) } },
+      resolve(_, args) {
+        return User.findById({boardId: args.id} );
+      }
+    },
 
   }
 })

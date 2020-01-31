@@ -16,6 +16,7 @@ const Board = mongoose.model("board")
 const List = mongoose.model("list");
 const Card = mongoose.model("card");
 const Comment = mongoose.model("comment");
+const User = mongoose.model("user");
 
 
 const mutation = new GraphQLObjectType({
@@ -214,17 +215,20 @@ const mutation = new GraphQLObjectType({
         return List.addCard(listId, cardId);
       }
     },
-    removeListCard: {
-      type: ListType,
+    updateUserBoard: {
+      type: BoardType,
       args: {
-        listId: { type: new GraphQLNonNull(GraphQLID) },
-        cardId: { type: new GraphQLNonNull(GraphQLID) }
+        userId: { type: new GraphQLNonNull(GraphQLID) },
+        boardId: { type: new GraphQLNonNull(GraphQLID) }
       },
-      resolve(_, { listId, cardId }) {
-        return List.removeCard(listId, cardId);
+      resolve(_, { userId, boardId }) {
+        return Board.updateUserBoard(userId, boardId );
       }
     },
+  
   }
 });
+
+
 
 module.exports = mutation;

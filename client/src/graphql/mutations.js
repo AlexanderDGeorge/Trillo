@@ -112,3 +112,25 @@ export const DELETE_BOARD = gql`
       }
     }
   `;
+
+export const UPDATE_USER = gql`
+ mutation UpdateUser($id:ID!, $boardId: ID ){
+  updateUser(id: $id, boardId: $boardId){
+    id
+    name
+    board{
+      id
+      title
+    }
+  }
+}
+`;
+
+export const UPDATE_USER_BOARD = gql`
+  mutation updateUserBoard($userId: ID!, $boardId: ID!) {
+    updateUserBoard(userId: $userId, boardId: $boardId) {
+      id
+    
+    }
+  }
+  `;
