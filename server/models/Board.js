@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-// const models = require("./index");
 
 const BoardSchema = new Schema({
   title: {
@@ -24,7 +23,7 @@ BoardSchema.statics.addList = (boardId, listId) => {
       board.lists.push(list);
       list.board = board;
       return Promise.all([board.save(), list.save()]).then(
-        ([board, list]) => board.lists
+        ([board, list]) => board
       );
     })
   })

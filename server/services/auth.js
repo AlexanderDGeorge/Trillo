@@ -92,6 +92,7 @@ const login = async data => {
         );
         return {
           token,
+          id: user._id,
           loggedIn: true,
           ...user,
           password: ""
@@ -115,7 +116,7 @@ const verifyUser = async data => {
     });
 
     return {
-      loggedIn
+      loggedIn,
     };
   } catch (err) {
     return {
@@ -124,4 +125,15 @@ const verifyUser = async data => {
   }
 };
 
-module.exports = { register, logout, login, verifyUser };
+const convertToken = async data => {
+  try {
+    const { token } = data;
+    const decoded = jwt.verify(token, keys.secretOrKey);
+    const { id } = decoded;
+    return { id };
+  } catch (err) {
+    return err;
+  }
+}
+
+module.exports = { register, logout, login, verifyUser, convertToken };

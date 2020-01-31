@@ -3,11 +3,12 @@ import './board-css/boardForm.css';
 import './board-css/boardList.css';
 
 import BoardList from './board-list';
-import AddBook from './new-board';
+import AddBoard from './new-board';
 
 
 class Board extends Component{
   render(){
+    console.log(this.props);
     return(
       <div className="home-container">
         <h1>Personal Boards</h1>
@@ -15,7 +16,7 @@ class Board extends Component{
           <BoardList />
         </div>
         <div>
-          <AddBook />
+          <AddBoard />
         </div>
       </div>
     );

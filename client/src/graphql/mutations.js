@@ -3,6 +3,7 @@ import gql from "graphql-tag";
 export const LOGIN_USER = gql`
   mutation LoginUser($email: String!, $password: String!) {
     login(email: $email, password: $password) {
+      id
       token
       loggedIn
     }
@@ -12,7 +13,8 @@ export const LOGIN_USER = gql`
 export const VERIFY_USER = gql`
   mutation VerifyUser($token: String!) {
     verifyUser(token: $token) {
-      loggedIn
+      loggedIn,
+      id
     }
   }
 `;
@@ -23,6 +25,14 @@ export const REGISTER_USER = gql`
       id
       token
       loggedIn
+    }
+  }
+`;
+
+export const CONVERT_TOKEN = gql`
+  mutation convertToken($token: String!) {
+    convertToken(token: $token) {
+      id
     }
   }
 `;
@@ -82,6 +92,14 @@ export const ADD_BOARD =gql`
   }
 `;
 
+export const DELETE_BOARD = gql`
+  mutation DeleteBoard($id: ID) {
+    deleteBoard(id: $id) {
+      id
+    }
+  }
+`;
+
 export const NEW_LIST = gql`
   mutation newList($title: String!) {
     newList(title: $title) {
@@ -99,9 +117,34 @@ export const UPDATE_LIST = gql`
   }
 `;
 
+export const DELETE_LIST = gql`
+  mutation deleteList($id: ID!) {
+    deleteList(id: $id){
+      id
+      title
+    }
+  }
+`;
+
 export const ADD_BOARD_LIST = gql`
-  mutation addBoardList($boardId: String!, $listId: String!) {
+  mutation addBoardList($boardId: ID!, $listId: ID!) {
     addBoardList(boardId: $boardId, listId: $listId) {
+      id
+      title
+      users {
+        name
+      }
+      lists {
+        id
+        title
+      }
+    }
+  }
+`;
+
+export const REMOVE_BOARD_LIST = gql`
+  mutation removeBoardList($boardId: ID!, $listId: ID!) {
+    removeBoardList(boardId: $boardId, listId: $listId) {
       id
       title
       lists {
@@ -110,4 +153,6 @@ export const ADD_BOARD_LIST = gql`
       }
     }
   }
-  `;
+`;
+
+
