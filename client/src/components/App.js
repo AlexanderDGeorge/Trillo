@@ -6,8 +6,8 @@ import Login from './session/login';
 import Register from './session/register';
 import Home from './home/home';
 import BoardDetail from'./board/board-detail';
-import Boards from './board/board'
-import BoardList from './board/board-list';
+import BoardList from "./board/board-list";
+// import Board from './board/board';
 
 export default () => (
   <Switch>
