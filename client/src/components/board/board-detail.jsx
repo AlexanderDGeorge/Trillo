@@ -8,7 +8,6 @@ import Loading from '../loading/loading';
 class BoardDetail extends Component{
   
   render() {
-    console.log(this.props);
     const boardId = this.props.match.params.boardId
     return(
       <Query 
