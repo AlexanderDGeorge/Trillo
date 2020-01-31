@@ -2,20 +2,20 @@ import React from "react";
 import { useQuery } from '@apollo/react-hooks';
 import { GET_USER_BOARDS } from "../../graphql/queries";
 import { Link } from "react-router-dom";
-import NavBar from "../nav/nav_bar";
 
 
 function BoardList() {
   //const id = ({properties: { token }}) => {[convertToken] = useMutation(CONVERT_TOKEN)}
   const id = localStorage.getItem("id");
   const { loading, data } = useQuery(GET_USER_BOARDS, { variables: { id } });
-debugger
+
   if (loading){
     return null;
   } else {
+    
+    console.log(data)
     return(
-      <div className="board-list home">
-        <NavBar/>
+      <div className="board-list">
         {data.user.boards.map(board => (
           <Link to={`/boards/${board.id}`}>
             {board.title}
