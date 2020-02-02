@@ -13,7 +13,7 @@ const CardType = new GraphQLObjectType({
     name: "CardType",
 
     fields: () => ({
-        _id: {type: GraphQLID },
+        id: {type: GraphQLID },
         title: { type: GraphQLString },
         description: {type: GraphQLString },
 

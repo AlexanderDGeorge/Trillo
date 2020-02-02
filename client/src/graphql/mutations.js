@@ -65,6 +65,34 @@ export const DELETE_CARD = gql`
     }
 `;
 
+export const ADD_LIST_CARD = gql`
+    mutation AddListCard($listId: ID! , $cardId: ID!){
+      addListCard(listId: $listId, cardId: $cardId){
+        id 
+        title
+        cards{
+          id 
+          title
+          description
+        }
+      }
+    }
+`;
+
+export const REMOVE_LIST_CARD = gql`
+    mutation RemoveListCard($listId: ID! , $cardId: ID!){
+      removeListCard(listId: $listId, cardId: $cardId){
+        id 
+        title
+        cards{
+          id 
+          title
+          description
+        }
+      }
+    } 
+`;
+
 export const CREATE_COMMENT = gql`
     mutation CreateComment($body: String!) {
       newComment(body: $body) {

@@ -1,44 +1,21 @@
+
 import React from 'react';
-import Query from 'react-apollo'
-import { GET_LIST_CARDS } from '../../graphql/queries';
+import Query from 'react-apollo';
 
 import CardItem from './card-item';
 
+function CardList(props){
 
-class CardList extends React.Component{
+   return (
+       <div>
+          {props.cards.map( card =>(
+              <div className="card-item">
+                    <CardItem id={card.id} title={card.title} description={card.description} listId={props.listId} />
+              </div>
+          ))}
 
-    constructor(props){
-        super(props);
-        this.state = {
-            selected: null
-        }
-    }
-
-    render(){
-        <Query query={GET_LIST_CARDS}>
-           {
-               ({loading,error,data}) => {
-                   if(loading) return <div>Loading cards ...</div>
-                   if(error) return `Error! ${error.message}`;
-
-                   return (
-                       <div>
-                           {data.list.cards.map( card => (
-                                <div className="card-item">
-                                    <CardItem key={card.id} title={card.title} description={card.description}/>
-                                </div>
-                           ))}
-
-                       </div>
-                   )
-
-               }
-
-
-           }
-
-        </Query>
-    }
-}
+       </div>
+   )
+ }
 
 export default CardList;

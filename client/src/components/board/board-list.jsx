@@ -3,7 +3,9 @@ import { useQuery } from '@apollo/react-hooks';
 import { GET_USER_BOARDS } from "../../graphql/queries";
 import { Link } from "react-router-dom";
 import DeleteBoard from './delete-board';
-
+import NavBar from "../nav/nav_bar";
+import AddBoard from "./new-board";
+        
 function BoardList() {
   const id = localStorage.getItem("id");
   const { loading, data } = useQuery(GET_USER_BOARDS, { variables: { id } });

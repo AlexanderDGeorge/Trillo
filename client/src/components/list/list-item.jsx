@@ -5,6 +5,7 @@ import { UPDATE_LIST } from '../../graphql/mutations';
 import DeleteList from './delete-list';
 import Loading from '../loading/loading';
 import './list.css';
+import Card from '../card/card';
 
 // List component takes in listId as a prop
 
@@ -27,6 +28,7 @@ function ListItem(props) {
     return (
       <div className="list-item">
         <div className="list-item-header">
+          
           <input
             className="list-item-title"
             type="text"
@@ -36,7 +38,7 @@ function ListItem(props) {
           <DeleteList listId={props.listId} boardId={props.boardId}/>
         </div>
         <div className="list-item-card">
-          card components go here
+            <Card cards={data.list.cards}  listId = {props.listId}/>
         </div>
       </div>
     )

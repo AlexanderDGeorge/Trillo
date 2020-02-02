@@ -102,7 +102,7 @@ export const GET_LIST_CARDS = gql`
 		list(id: $listId){
 			title
 			cards{
-				_id
+				id
                 title,
                 description
 			}
