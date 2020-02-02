@@ -30,7 +30,7 @@ const DeleteCard = props => {
                         removeListCard({ variables: { listId: props.listId, cardId:props.cardId } });
                     }}
                 >
-                    <p>Delete</p>
+                    <h3>Delete</h3>
                 </a>
             )}
         </Mutation>
