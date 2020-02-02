@@ -1,92 +1,79 @@
-import React,{ Component } from 'react';
-import { Mutation } from 'react-apollo';
 
-import { CREATE_CARD } from '../../graphql/mutations';
-import { FETCH_CARDS } from '../../graphql/queries';
+import React, { useState } from 'react';
+import { useMutation } from 'react-apollo';
 
+import { CREATE_CARD, ADD_LIST_CARD } from '../../graphql/mutations';
+import { FETCH_LIST } from '../../graphql/queries';
+import './card-css/card.css'
 
-class AddCard extends React.Component {
-
-    constructor(props){
-        super(props);
-
-        this.state = {
-            title:'',
-            description:'',
-            message: ''
-        }
-
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleSubmit(e,newCard) {
-        e.preventDefault();
-
-        newCard({
-            variables:{
-                title: this.state.title,
-                description: this.state.description
-            }
-        }).then(() => this.clearData())
-    }
-
-    update(field){
-        return e => this.setState({[field]: e.currentTarget.value})
-    }
-
-    updateCache(cache, { data }){
-        let cards;
-
-        try{
-            cards = cache.readQuey({query: FETCH_CARDS}) 
-        }catch(err){
-            return;
-        }
-
-        if(cards){
-            let cardArray = cards.cards;
-            let newCard = data.newCard;
+function AddCard(props) {
+    const [newCard] = useMutation(CREATE_CARD);
+    const [addListCard] = useMutation(ADD_LIST_CARD, {
+        update(cache, {data: { addListCard} } ) {
             cache.writeQuery({
-                query: FETCH_CARDS,
-                data: {cards: cardArray.concat(newCard)}
-            });
+                query: FETCH_LIST,
+                variables: { id: props.listId},
+                data: { list: addListCard }
+            })
         }
+    })
+
+    const [open, setOpen] = useState(false);
+    const [title, setTitle] = useState("");
+    const [description,setDescription] = useState("");
+
+    function handleSubmit(e){
+        e.preventDefault();
+        newCard({ variables: { title, description }}).then(
+            ({data}) => addListCard({ variables: {
+                listId: props.listId,
+                cardId: data.newCard.id
+            }})
+        )
+        setOpen(false);
+        setTitle("");
+        setDescription("");
     }
 
-    clearData() {
-        this.setState({
-            name: ''
-        })
-    }
+     if (open){
+         return(
+             <div>
+                 <form 
+                   className="card-add-form"
+                   onSubmit={e => handleSubmit(e)}>
 
-    render(){
-        <Mutation
-           mutation={CREATE_CARD}
-           onError={err => this.setState({message: err.message})}
-           update={(cache,data) => this.updateCache(cache,data)}
-           onCompleted={data =>{
-               const {title, description} = data.newCard;
-               this.setState({
-                   message: `New Card ${title} created successfully`
-               })
-               
-           }}
-           >
-         <div>
-           <form onSubmit={e => this.handleSubmit(e,newCard)}>
-                <div className="card-field">
-                    <label>Enter a title for this card</label>
-                    <input type="text" value={this.state.title} onChange={this.update("title")}></input>
-                    {/* <label>Add a more detailed description</label>
-                    <input type="text" value={this.state.description} onChange={this.update("description")}></input> */}
-                </div>
-                <button> Add Card</button>
-            </form>    
-            <p>{this.state.message}</p>
-        </div>
-        </Mutation> 
-    }
+                       <input
+                         className="card-title-textbox"
+                         type="text" 
+                         placeholder="Enter card title..."
+                         onChange={e => setTitle(e.target.value)}
+                            />
+                         
+                         <button type="submit">
+                             Add Card
+                         </button>
+                        
+                        <button onClick={() => {setOpen(false)}}>
+                              Cancel
 
+                        </button>
+                      
+
+                 </form>
+                   
+             </div>
+         )
+     } else {
+         return (
+             <button
+                className="card-add"
+                onClick={() => setOpen(true)}
+                >
+                 +  Add another card  
+             </button>
+         )
+     }
+  
 }
 
 export default AddCard;

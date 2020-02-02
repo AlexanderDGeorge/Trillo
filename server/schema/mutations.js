@@ -268,6 +268,18 @@ const mutation = new GraphQLObjectType({
         return List.addCard(listId, cardId);
       }
     },
+
+    removeListCard: {
+      type: ListType,
+      args: {
+        listId: { type: new GraphQLNonNull(GraphQLID) },
+        cardId: { type: new GraphQLNonNull(GraphQLID) }
+      },
+      resolve(_, { listId, cardId }) {
+        return List.removeCard(listId, cardId);
+      }
+    },
+
     newUserBoard: {
       type: UserType,
       args: {

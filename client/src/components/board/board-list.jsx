@@ -4,12 +4,9 @@ import { FETCH_BOARDS } from "../../graphql/queries";
 import { GET_USER_BOARDS } from "../../graphql/queries";
 import { Query } from "react-apollo";
 import { Link } from "react-router-dom";
-<<<<<<< HEAD
 import DeleteBoard from './delete-board';
-=======
 import NavBar from "../nav/nav_bar";
 import AddBoard from "./new-board";
->>>>>>> f096f2b42190ac1b8998ea39072ebc7b5b0aec04
 
 
 function BoardList() {

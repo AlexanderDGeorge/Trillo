@@ -13,11 +13,11 @@ class User extends Component {
     return (
        
       <div className="board-detail">
-        {this.props.users.map(user => (
+        {/* {this.props.users.map(user => (
           <li key={user.id}>
             <UserDetail user={user} boardId={this.props.boardId} />
           </li>
-        ))}
+        ))} */}
       </div>
     
       // <Query

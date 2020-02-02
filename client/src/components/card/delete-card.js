@@ -1,8 +1,10 @@
 import React from "react";
 import { Mutation } from "react-apollo";
 
-import { DELETE_CARD } from '../../graphql/mutations';
+import { REMOVE_LIST_CARD } from '../../graphql/mutations';
 import { FETCH_CARDS } from "../../graphql/queries";
+
+
 
 const linkStyle = {
     cursor: "pointer",
@@ -12,7 +14,7 @@ const linkStyle = {
 
 const DeleteCard = props => {
     return (
-        <Mutation mutation={DELETE_CARD}
+        <Mutation mutation={REMOVE_LIST_CARD}
             refetchQueries={() => {
                 return [
                     {
@@ -20,15 +22,15 @@ const DeleteCard = props => {
                     }
                 ];
             }}>
-            {(deleteCard, { data }) => (
+            {(removeListCard, { data }) => (
                 <a
                     style={linkStyle}
                     onClick={e => {
                         e.preventDefault();
-                        deleteCard({ variables: { id: props.id } });
+                        removeListCard({ variables: { listId: props.listId, cardId:props.cardId } });
                     }}
                 >
-                    <p>Delete</p>
+                    <h3>Delete</h3>
                 </a>
             )}
         </Mutation>

@@ -4,6 +4,7 @@ import { Query, Mutation } from 'react-apollo';
 import { FETCH_CARD } from '../../graphql/queries';
 
 import CardItemDetail from './card-item-detail';
+import DeleteCard from './delete-card';
 
 
 class CardItem extends React.Component {
@@ -26,18 +27,20 @@ class CardItem extends React.Component {
 
 
     render(){
-     
+       const cardId = this.props.id
       return (
+       
         <Query
          query={ FETCH_CARD } 
-         variables={{id:this.props.match.params.key}}
+         variables={{id:cardId}}
          >
              {({loading,error,data}) => {
                  if (loading) return <h1>Loading....</h1>
 
                  return (
-                     <div onClick={this.handleCardClick}>
+                     <div className="card-item" onClick={this.handleCardClick}>
                          <span> {this.props.title}</span>
+                         <DeleteCard cardId={cardId} listId={this.props.listId} />
                      </div>
                  );
              }}
