@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Mutation } from "react-apollo";
-
-import { DELETE_BOARD } from '../../graphql/mutations';
 import { DELETE_USER_BOARD } from '../../graphql/mutations';
 import { GET_USER_BOARDS } from '../../graphql/queries';
 
