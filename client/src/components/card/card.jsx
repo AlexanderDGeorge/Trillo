@@ -1,25 +1,24 @@
-import React,{Component} from 'react';
+
+import React from 'react';
 import CardList from './card-list';
 import AddCard from './new-card';
+import './card-css/card.css'
 
 
-class Card extends Component {
+function Card(props)  {
 
-        render(){
+    
+      return (
+            <div className="card-container">
+                <div className="all-cards">
+                    <CardList cards={props.cards} listId={props.listId} />
+                </div>
+                <div className="add-card">
+                    <AddCard listId={props.listId} />
+                </div>
+            </div>
+        )
+ }
 
 
-            return(
-                 <div className="card-container">
-                     <h1>List of Cards</h1>
-                     <div className="all-cards">
-                          <CardList/>  
-                     </div>
-                     <div className="add-card">
-                          <AddCard/> 
-                    </div>
-                 </div>
-            )
-        }
-
-}
 export default Card;

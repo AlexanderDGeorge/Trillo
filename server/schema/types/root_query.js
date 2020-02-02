@@ -62,9 +62,9 @@ const RootQuery = new GraphQLObjectType({
     },
     card: {
        type: CardType,
-       args: { _id: {type: new GraphQLNonNull(GraphQLID)}},
+       args: { id: {type: new GraphQLNonNull(GraphQLID)}},
        resolve(_,args) {
-         return Card.findById(args._id);
+         return Card.findById(args.id);
        }
     },
     cards: {
