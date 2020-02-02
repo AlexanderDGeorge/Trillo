@@ -40,7 +40,7 @@ UserSchema.statics.addBoard = (userId, boardId) => {
       );
     })
   })
-}
+};
 
 UserSchema.statics.removeBoard = (userId, boardId) => {
   const User = mongoose.model("user");

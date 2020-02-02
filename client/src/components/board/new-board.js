@@ -1,49 +1,49 @@
 import React, {Component} from 'react';
 import { Mutation } from "react-apollo";
 
-import { ADD_BOARD } from '../../graphql/mutations';
+import { ADD_USER_BOARD } from '../../graphql/mutations'; 
 import { FETCH_BOARDS } from '../../graphql/queries';
-
+import { GET_USER_BOARDS } from "../../graphql/queries";
 
 class AddBoard extends Component{
   constructor(props){
     super(props);
     this.state={
-      title: '',
-      message: ''
+      title: ''
     }
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(e, newBoard) {
- 
+  handleSubmit(e, newUserBoard) {
    e.preventDefault();
-    newBoard({
+    newUserBoard({
       variables:{
+        userId: localStorage.getItem("id"),
         title: this.state.title
       }
-    }).then(() => this.clearData());
-    
+    }).then((board) => this.clearData());
   }
-  
   
   update(field){
     return e => this.setState({ [field]: e.currentTarget.value });
   }
 
   updateCache(cache, { data }){
-    let boards;
+    let user;
+    const id = localStorage.getItem("id");
     try{
-      boards = cache.readQuery({ query: FETCH_BOARDS })
+      user = cache.readQuery({ query: GET_USER_BOARDS, variables:{id} })
     } catch(err){
       return;
     }
-    if(boards){
-      let boardArray = boards.boards;
-      let newBoard = data.newBoard;
+    if(user){
+      let boardArray = user.user.boards;
+      let newUserBoard = data.newUserBoard;
+     
       cache.writeQuery({
-        query: FETCH_BOARDS,
-        data: { boards: boardArray.concat(newBoard)}
+        query: GET_USER_BOARDS,
+        variables: {id},
+        data: { user: newUserBoard }
       });
     }
   }
@@ -51,6 +51,7 @@ class AddBoard extends Component{
   clearData() {
     this.setState({
       title: ''
+     
     })
   }
 
@@ -58,27 +59,25 @@ class AddBoard extends Component{
     return(
 
       <Mutation
-        mutation={ADD_BOARD} 
+        mutation={ADD_USER_BOARD} 
         onError={err =>this.setState({message: err.message})}
         update={(cache, data) => this.updateCache(cache, data)}
         onCompleted={data =>{
-          const { title } = data.newBoard;
+          const { title } = data.newUserBoard;
           this.setState({
             message: `New board ${title} created successfully`
           });
         }}>
-          {(newBoard, { data }) => (
+          {(newUserBoard, { data }) => (
           <div>
-            <form onSubmit={ e => this.handleSubmit(e, newBoard)}>
+            <form onSubmit={ e => this.handleSubmit(e, newUserBoard)}>
               <div className="field">
-                <label> Title </label>
-                <input type="text"
+                <input type="text" placeholder="Board name"
                   value={this.state.title}
                   onChange={this.update("title")} />
               </div>
-              <button>+</button>
+              <button disabled={!this.state.title} >+</button>
             </form>
-            <p>{this.state.message}</p>
           </div>
           )}
 
