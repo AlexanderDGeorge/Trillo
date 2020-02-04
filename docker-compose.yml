@@ -1,0 +1,15 @@
+  
+version: "3"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    image: store
+    environment:
+      NODE_ENV: production
+      MONGO_URI: "mongodb+srv://dev:lrC3K6YUeFT0dwyB@cluster0-n1gm4.mongodb.net/test?retryWrites=true&w=majority"
+      secretOrKey: "186b5bf1-3fb8-4db5-a394-07798dee4760"
+    ports:
+      - "5000:5000"
