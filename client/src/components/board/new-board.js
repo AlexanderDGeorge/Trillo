@@ -9,17 +9,20 @@ class AddBoard extends Component{
   constructor(props){
     super(props);
     this.state={
-      title: ''
+      title: '',
+      image: ''
     }
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(e, newUserBoard) {
    e.preventDefault();
+
     newUserBoard({
       variables:{
         userId: localStorage.getItem("id"),
-        title: this.state.title
+        title: this.state.title,
+        image: this.randomBg() 
       }
     }).then((board) => this.clearData());
   }
@@ -39,10 +42,10 @@ class AddBoard extends Component{
     if(user){
       let boardArray = user.user.boards;
       let newUserBoard = data.newUserBoard;
-     
+  
       cache.writeQuery({
         query: GET_USER_BOARDS,
-        variables: {id},
+        variables: {id},  
         data: { user: newUserBoard }
       });
     }
@@ -50,10 +53,17 @@ class AddBoard extends Component{
 
   clearData() {
     this.setState({
-      title: ''
-     
+      title: '',
+      image: ''
     })
   }
+
+ randomBg() {
+  let random = Math.floor(Math.random() * 7) + 0;
+  let imgArray= ["1.jpeg", "2.jpeg", "3.jpeg", "4.jpeg", "5.jpeg", "6.jpeg", "7.jpeg"];
+   return imgArray[random]
+  //  this.setState({image: imgArray[random]});
+}
 
   render(){
     return(
@@ -69,7 +79,7 @@ class AddBoard extends Component{
           });
         }}>
           {(newUserBoard, { data }) => (
-          <div>
+          <div className="board-form">
             <form onSubmit={ e => this.handleSubmit(e, newUserBoard)}>
               <div className="field">
                 <input type="text" placeholder="Board name"

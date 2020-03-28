@@ -80,10 +80,11 @@ const mutation = new GraphQLObjectType({
     newBoard: {
       type: BoardType,
       args: {
-        title: { type: GraphQLString }
+        title: { type: GraphQLString },
+        image:{ type: GraphQLString }
       },
-      resolve(_, { title }) {
-        return new Board({ title }).save();
+      resolve(_, { title, image }) {
+        return new Board({ title, image }).save();
       }
     },
     updateBoard: {
@@ -91,10 +92,11 @@ const mutation = new GraphQLObjectType({
       args: {
         title: { type: GraphQLString }
       },
-      resolve(_, { id, title }) {
+      resolve(_, { id, title, image }) {
         const newBoard = {};
         if (id) newBoard.id = id;
         if (title) newBoard.title = title;
+        if (image) newBoard.image = image;
         return Board.findByIdAndUpdate(
           { id: id },
           { $set: newBoard },
@@ -284,10 +286,11 @@ const mutation = new GraphQLObjectType({
       type: UserType,
       args: {
         userId: { type: new GraphQLNonNull(GraphQLID) },
-        title: { type: new GraphQLNonNull(GraphQLString) }
+        title: { type: new GraphQLNonNull(GraphQLString) },
+        image: { type: new GraphQLNonNull(GraphQLString) }
       },
-      resolve(_, { userId, title }) {
-        return new Board({ title }).save().then(board => {
+      resolve(_, { userId, title, image }) {
+        return new Board({ title, image }).save().then(board => {
           return User.addBoard(userId, board._id);
         })
       }
