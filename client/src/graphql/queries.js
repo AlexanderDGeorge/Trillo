@@ -97,10 +97,11 @@ export const GET_BOARD_LISTS = gql`
 export const GET_LIST_CARDS = gql`
 	query listCards($listId: ID!){
 		list(id: $listId){
+            id
 			title
 			cards{
 				id
-                title,
+                title
                 description
 			}
 		}
