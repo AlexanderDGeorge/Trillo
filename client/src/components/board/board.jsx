@@ -12,7 +12,7 @@ class Board extends Component{
       <div >
         <NavBar />
           <div className="leftPanel">
-            <div>
+          <div className="board-form">
               <h2>Feel free to add unlimited boards</h2>
               <p>Here you can add more boards</p>
               <br></br>

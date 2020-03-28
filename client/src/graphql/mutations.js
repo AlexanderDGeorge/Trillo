@@ -116,6 +116,7 @@ export const ADD_BOARD =gql`
     newBoard(title: $title){
       id
       title
+      image
     }
   }
 `;
@@ -125,6 +126,7 @@ export const DELETE_BOARD = gql`
     deleteBoard(id: $id) {
       id
       title
+      image
     }
   }
 `;
@@ -136,6 +138,7 @@ export const DELETE_USER_BOARD =gql`
     boards{
       id
       title
+      image
     }
   }
 }
@@ -216,13 +219,14 @@ export const UPDATE_USER_BOARD = gql`
   `;
 
 export const ADD_USER_BOARD = gql`
-  mutation newUserBoard($userId: ID!, $title: String!) {
-    newUserBoard(userId: $userId, title: $title) {
+  mutation newUserBoard($userId: ID!, $title: String!, $image: String!) {
+    newUserBoard(userId: $userId, title: $title, image: $image) {
       id
       name
       boards{
         id
         title
+        image
       }
     }
   }

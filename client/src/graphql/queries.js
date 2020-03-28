@@ -44,6 +44,7 @@ export const FETCH_BOARDS = gql`
         boards{
             id
             title
+            image
            
         }
     }
@@ -54,6 +55,7 @@ query FetchBoard($id: ID!){
     board(id: $id){
         id
         title
+        image
         lists{
             id
             title
@@ -77,7 +79,8 @@ export const GET_USER_BOARDS = gql`
 		user(id: $id) {
 			boards{
 				id
-				title
+                title
+                image
 			}
 		}
 	}

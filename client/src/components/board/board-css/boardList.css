@@ -12,12 +12,14 @@
   float: left;
   margin:10pt;
   border:1px solid lightgray;
-      
+  opacity: 0.9;
+  /* background-image: url(../../../assets/images/3.jpeg); */
 }
 
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   cursor: pointer;
+  opacity: 1;
 }
 
 .board-tile-details {
@@ -29,8 +31,8 @@
   flex-direction: column;
   justify-content: space-between;
   font-size: 20px;
-  color:black;
-  
+  color:lightgray;
+  font-weight: 300;
   text-decoration: none;
 
 }
@@ -106,6 +108,15 @@ hr {
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
+.link-board{
+  text-decoration: none;
+}
+
+
+
+
+
+
 
 
 

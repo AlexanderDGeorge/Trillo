@@ -6,6 +6,10 @@ const BoardSchema = new Schema({
     type: String,
     require: true
   },
+  image:{
+    type:String,
+    require:true
+  },
   users: [
     {
       type: Schema.Types.ObjectId,
