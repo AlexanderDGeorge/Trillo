@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import { Mutation } from 'react-apollo';
-import { REGISTER_USER } from '../../graphql/mutations';
-import './session.css'
-import Home from '../home/home';
+import React, { Component } from "react";
+import { Mutation } from "react-apollo";
+import { REGISTER_USER } from "../../graphql/mutations";
+import "./session.css";
+import Home from "../home/home";
 
 class Register extends Component {
   constructor(props) {
@@ -11,7 +11,8 @@ class Register extends Component {
     this.state = {
       name: "",
       email: "",
-      password: ""
+      password: "",
+      errors: ""
     };
   }
   update(field) {
@@ -25,10 +26,24 @@ class Register extends Component {
     });
   }
 
+  renderErrors(errors) {
+    if (errors === "") {
+      return <div></div>;
+    } else {
+      return (
+        <ul className="errors-box">
+          {errors.map((err, idx) => (
+            <li key={idx}>{err}</li>
+          ))}
+        </ul>
+      );
+    }
+  }
+
   render() {
     return (
       <div>
-        <Home/>
+        <Home />
         <Mutation
           mutation={REGISTER_USER}
           onCompleted={data => {
@@ -36,11 +51,19 @@ class Register extends Component {
             localStorage.setItem("auth-token", token);
             this.props.history.push("/");
           }}
+          onError={({ graphQLErrors }) => {
+            this.setState({
+              errors: Object.values(graphQLErrors[0].message.split(","))
+            });
+            this.renderErrors(this.state.errors);
+          }}
           update={(client, data) => this.updateCache(client, data)}
         >
           {registerUser => (
-            <div className="session"
-              onClick={this.handleClick}>
+            <div className="session" onClick={this.handleClick}>
+              <div className="error-message">
+                {this.renderErrors(this.state.errors)}
+              </div>
               <form
                 className="session-form"
                 onSubmit={e => {

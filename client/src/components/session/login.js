@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import { Mutation } from 'react-apollo';
-import { LOGIN_USER } from '../../graphql/mutations';
-import './session.css';
-import Home from '../home/home';
+import React, { Component } from "react";
+import { Mutation } from "react-apollo";
+import { LOGIN_USER } from "../../graphql/mutations";
+import "./session.css";
+import Home from "../home/home";
 
 class Login extends Component {
   constructor(props) {
@@ -10,8 +10,25 @@ class Login extends Component {
 
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      errors: ""
     };
+  }
+
+  //new code
+
+  renderErrors(errors) {
+    if (errors === "") {
+      return <div></div>;
+    } else {
+      return (
+        <ul className="errors-box">
+          {errors.map((err, idx) => (
+            <li key={idx}>{err}</li>
+          ))}
+        </ul>
+      );
+    }
   }
 
   update(field) {
@@ -28,19 +45,28 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <Home/>
+        <Home />
         <Mutation
           mutation={LOGIN_USER}
           onCompleted={data => {
             const { token, id } = data.login;
             localStorage.setItem("auth-token", token);
-            localStorage.setItem("id", id)
+            localStorage.setItem("id", id);
             this.props.history.push("/boards");
+          }}
+          onError={({ graphQLErrors }) => {
+            this.setState({
+              errors: Object.values(graphQLErrors[0].message.split(","))
+            });
+            this.renderErrors(this.state.errors);
           }}
           update={(client, data) => this.updateCache(client, data)}
         >
           {loginUser => (
             <div className="session">
+              <div className="error-message">
+                {this.renderErrors(this.state.errors)}
+              </div>
               <form
                 className="session-form"
                 onSubmit={e => {
