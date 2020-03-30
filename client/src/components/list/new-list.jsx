@@ -7,11 +7,13 @@ function NewList(props){
   const [newList] = useMutation(NEW_LIST);
   const [addBoardList] = useMutation(ADD_BOARD_LIST, {
     update(cache, { data: { addBoardList } }) {
+        
       cache.writeQuery({ 
         query: FETCH_BOARD, 
         variables: { id: props.boardId },
         data: { board: addBoardList }
       })
+    
     }
   });
   const [open, setOpen] = useState(false);

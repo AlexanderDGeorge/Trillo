@@ -4,11 +4,18 @@
   height: 100vh;
   z-index: 1;
   top: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.error-message {
+  color: red;
+  font-size: 20px;
+}
+ul li {
+  list-style: none;
 }
 
 .session-form {
@@ -24,9 +31,8 @@
 }
 
 .session-form button {
-  background-color: #61BD4F;
+  background-color: #61bd4f;
   border-radius: 5px;
   padding: 20px;
   margin: 10px;
 }
-

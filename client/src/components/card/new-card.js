@@ -3,18 +3,24 @@ import React, { useState } from 'react';
 import { useMutation } from 'react-apollo';
 
 import { CREATE_CARD, ADD_LIST_CARD } from '../../graphql/mutations';
-import { FETCH_LIST } from '../../graphql/queries';
+import { GET_LIST_CARDS } from '../../graphql/queries';
 import './card-css/card.css'
 
 function AddCard(props) {
     const [newCard] = useMutation(CREATE_CARD);
+    
     const [addListCard] = useMutation(ADD_LIST_CARD, {
+        
         update(cache, {data: { addListCard} } ) {
+            // console.log(".........")
+            // console.log(props.listId)
             cache.writeQuery({
-                query: FETCH_LIST,
+                query: GET_LIST_CARDS,
                 variables: { id: props.listId},
                 data: { list: addListCard }
             })
+            // console.log(cache.data)
+            // console.log(addListCard)
         }
     })
 

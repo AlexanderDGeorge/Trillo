@@ -79,6 +79,7 @@ const login = async data => {
     const user = await User.findOne({ email: data.email }).lean();
 
     const { email, password } = data;
+
     if (!user) {
       throw new Error("User does not exist!");
     } else {
@@ -90,6 +91,7 @@ const login = async data => {
           },
           keys.secretOrKey
         );
+
         return {
           token,
           id: user._id,
@@ -106,6 +108,32 @@ const login = async data => {
   }
 };
 
+//new code
+// const login = async data => {
+//   try {
+//     const { message, isValid } = validateLoginInput(data);
+
+//     if (!isValid) {
+//       throw new Error(JSON.stringify(message));
+//       // throw new Error(message);
+//     }
+
+//     const { email, password } = data;
+
+//     const user = await User.findOne({ email });
+//     if (!user) throw new Error("This user does not exist");
+
+//     const isValidPassword = await bcrypt.compareSync(password, user.password);
+//     if (!isValidPassword) throw new Error("Invalid password");
+
+//     const token = jwt.sign({ id: user.id }, keys.secretOrKey);
+
+//     return { token, loggedIn: true, ...user._doc, password: null };
+//   } catch (err) {
+//     throw err.message;
+//   }
+// };
+
 const verifyUser = async data => {
   try {
     const { token } = data;
@@ -114,9 +142,9 @@ const verifyUser = async data => {
     const loggedIn = await User.findById(id).then(user => {
       return user ? true : false;
     });
-
+    // debugger;
     return {
-      loggedIn,
+      loggedIn
     };
   } catch (err) {
     return {
@@ -134,6 +162,6 @@ const convertToken = async data => {
   } catch (err) {
     return err;
   }
-}
+};
 
 module.exports = { register, logout, login, verifyUser, convertToken };
