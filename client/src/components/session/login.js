@@ -64,34 +64,36 @@ class Login extends Component {
         >
           {loginUser => (
             <div className="session">
-              <div className="error-message">
-                {this.renderErrors(this.state.errors)}
+              <div className="signin-form">
+                <div className="error-message">
+                  {this.renderErrors(this.state.errors)}
+                </div>
+                <form
+                  className="session-form"
+                  onSubmit={e => {
+                    e.preventDefault();
+                    loginUser({
+                      variables: {
+                        email: this.state.email,
+                        password: this.state.password
+                      }
+                    });
+                  }}
+                >
+                  <input
+                    value={this.state.email}
+                    onChange={this.update("email")}
+                    placeholder="Email"
+                  />
+                  <input
+                    value={this.state.password}
+                    onChange={this.update("password")}
+                    type="password"
+                    placeholder="Password"
+                  />
+                  <button type="submit">Log In</button>
+                </form>
               </div>
-              <form
-                className="session-form"
-                onSubmit={e => {
-                  e.preventDefault();
-                  loginUser({
-                    variables: {
-                      email: this.state.email,
-                      password: this.state.password
-                    }
-                  });
-                }}
-              >
-                <input
-                  value={this.state.email}
-                  onChange={this.update("email")}
-                  placeholder="Email"
-                />
-                <input
-                  value={this.state.password}
-                  onChange={this.update("password")}
-                  type="password"
-                  placeholder="Password"
-                />
-                <button type="submit">Log In</button>
-              </form>
             </div>
           )}
         </Mutation>
