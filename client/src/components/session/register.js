@@ -49,6 +49,7 @@ class Register extends Component {
           onCompleted={data => {
             const { token } = data.register;
             localStorage.setItem("auth-token", token);
+
             this.props.history.push("/");
           }}
           onError={({ graphQLErrors }) => {

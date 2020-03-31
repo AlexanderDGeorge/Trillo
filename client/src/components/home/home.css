@@ -15,7 +15,7 @@
 .home {
   height: 100vh;
   width: 100vw;
-  background: linear-gradient(135deg, #F07B3F, #EA5455);
+  background: linear-gradient(135deg, #f07b3f, #ea5455);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,24 +24,27 @@
 .home-content {
   display: flex;
   flex-direction: column;
-  align-content: center;
-  justify-content: space-between;
+
+  margin-top: 100px;
   padding: 10px;
-  max-width: 500px;
+
+  align-items: center;
+  justify-content: center;
+  align-content: center;
 }
 
 .home-content h1 {
   color: white;
   font-size: 3rem;
-  font-weight: 500;
-  padding: 20px;
+  font-weight: 400;
+  padding: 4px;
 }
 
 .home-content h2 {
   color: white;
   font-size: 1.5rem;
   font-weight: 300;
-  padding: 20px;
+  padding: 4px;
 }
 
 .home-content span {
@@ -59,7 +62,9 @@
   border-radius: 5px;
   font-size: 20px;
 }
-
+.demo-user-btn {
+  margin-top: 30px;
+}
 .home-form button {
   padding: 20px;
   border-radius: 5px;
@@ -67,10 +72,10 @@
   font-size: 20px;
   font-weight: 600;
   transition: linear 0.2s;
-  background-color: #2D4059;
+  background-color: #2d4059;
 }
 
 .home-form button:hover {
   transition: linear 0.2s;
-  background-color: #61BD4F;
+  background-color: #61bd4f;
 }
