@@ -61,40 +61,42 @@ class Register extends Component {
         >
           {registerUser => (
             <div className="session" onClick={this.handleClick}>
-              <div className="error-message">
-                {this.renderErrors(this.state.errors)}
+              <div className="signup-form">
+                <div className="error-message">
+                  {this.renderErrors(this.state.errors)}
+                </div>
+                <form
+                  className="session-form"
+                  onSubmit={e => {
+                    e.preventDefault();
+                    registerUser({
+                      variables: {
+                        name: this.state.name,
+                        email: this.state.email,
+                        password: this.state.password
+                      }
+                    });
+                  }}
+                >
+                  <input
+                    value={this.state.name}
+                    onChange={this.update("name")}
+                    placeholder="Name"
+                  />
+                  <input
+                    value={this.state.email}
+                    onChange={this.update("email")}
+                    placeholder="Email"
+                  />
+                  <input
+                    value={this.state.password}
+                    onChange={this.update("password")}
+                    type="password"
+                    placeholder="Password"
+                  />
+                  <button type="submit">Sign up</button>
+                </form>
               </div>
-              <form
-                className="session-form"
-                onSubmit={e => {
-                  e.preventDefault();
-                  registerUser({
-                    variables: {
-                      name: this.state.name,
-                      email: this.state.email,
-                      password: this.state.password
-                    }
-                  });
-                }}
-              >
-                <input
-                  value={this.state.name}
-                  onChange={this.update("name")}
-                  placeholder="Name"
-                />
-                <input
-                  value={this.state.email}
-                  onChange={this.update("email")}
-                  placeholder="Email"
-                />
-                <input
-                  value={this.state.password}
-                  onChange={this.update("password")}
-                  type="password"
-                  placeholder="Password"
-                />
-                <button type="submit">Sign up</button>
-              </form>
             </div>
           )}
         </Mutation>
