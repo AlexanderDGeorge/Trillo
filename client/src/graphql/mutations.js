@@ -13,7 +13,7 @@ export const LOGIN_USER = gql`
 export const VERIFY_USER = gql`
   mutation VerifyUser($token: String!) {
     verifyUser(token: $token) {
-      loggedIn,
+      loggedIn
       id
     }
   }
@@ -38,82 +38,80 @@ export const CONVERT_TOKEN = gql`
 `;
 
 export const CREATE_CARD = gql`
-   mutation CreateCard($title: String!, $description: String!) {
-      newCard(title: $title, description: $description) {
+  mutation CreateCard($title: String!, $description: String!) {
+    newCard(title: $title, description: $description) {
+      id
+      title
+      description
+    }
+  }
+`;
+
+export const UPDATE_CARD = gql`
+  mutation UpdateCard($id: ID!, $title: String!, $description: String!) {
+    updateCard(id: $id, title: $title, description: $description) {
+      title
+      description
+    }
+  }
+`;
+
+export const DELETE_CARD = gql`
+  mutation DeleteCard($id: ID!) {
+    deleteCard(id: $id) {
+      id
+    }
+  }
+`;
+
+export const ADD_LIST_CARD = gql`
+  mutation AddListCard($listId: ID!, $cardId: ID!) {
+    addListCard(listId: $listId, cardId: $cardId) {
+      id
+      title
+      cards {
         id
         title
         description
       }
-   }
-`;
-
-export const UPDATE_CARD = gql`
-   mutation UpdateCard($id: ID!, $title: String!, $description: String!){
-     updateCard(id:$id, title:$title, description:$description){
-       title
-       description
-     }
-   }
-
-`;
-
-export const DELETE_CARD = gql`
-   mutation DeleteCard($id: ID!){
-      deleteCard(id:$id){
-        id
-      }
     }
-`;
-
-export const ADD_LIST_CARD = gql`
-    mutation AddListCard($listId: ID! , $cardId: ID!){
-      addListCard(listId: $listId, cardId: $cardId){
-        id 
-        title
-        cards{
-          id 
-          title
-          description
-        }
-      }
-    }
+  }
 `;
 
 export const REMOVE_LIST_CARD = gql`
-    mutation RemoveListCard($listId: ID! , $cardId: ID!){
-      removeListCard(listId: $listId, cardId: $cardId){
-        id 
+  mutation RemoveListCard($listId: ID!, $cardId: ID!) {
+    removeListCard(listId: $listId, cardId: $cardId) {
+      id
+      title
+      cards {
+        id
         title
-        cards{
-          id 
-          title
-          description
-        }
+        description
       }
-    } 
+    }
+  }
 `;
 
 export const CREATE_COMMENT = gql`
-    mutation CreateComment($body: String!) {
-      newComment(body: $body) {
-        id
-        body
-      }
+  mutation CreateComment($body: String!) {
+    newComment(body: $body) {
+      id
+      body
     }
-
+  }
 `;
 
 export const DELETE_COMMENT = gql`
-    mutation DeleteComment($id: ID!){
-      deleteComment(id:$id){
-        id
-      }
+  mutation DeleteComment($id: ID!) {
+    deleteComment(id: $id) {
+      id
     }
-`
+  }
+`;
 
-export const ADD_BOARD =gql`
-  mutation AddBoard($title: String!){
-    newBoard(title: $title){
+export const ADD_BOARD = gql`
+  mutation AddBoard($title: String!) {
+    newBoard(title: $title) {
       id
       title
       image
@@ -130,18 +128,18 @@ export const DELETE_BOARD = gql`
     }
   }
 `;
-export const DELETE_USER_BOARD =gql`
- mutation deleteUserBoard($userId: ID!, $boardId: ID! ){
-  deleteUserBoard(userId: $userId,boardId: $boardId){
-    id
-    name
-    boards{
+export const DELETE_USER_BOARD = gql`
+  mutation deleteUserBoard($userId: ID!, $boardId: ID!) {
+    deleteUserBoard(userId: $userId, boardId: $boardId) {
       id
-      title
-      image
+      name
+      boards {
+        id
+        title
+        image
+      }
     }
   }
-}
 `;
 
 export const NEW_LIST = gql`
@@ -164,7 +162,7 @@ export const UPDATE_LIST = gql`
 
 export const DELETE_LIST = gql`
   mutation deleteList($id: ID!) {
-    deleteList(id: $id){
+    deleteList(id: $id) {
       id
       title
     }
@@ -194,45 +192,40 @@ export const REMOVE_BOARD_LIST = gql`
         title
       }
     }
-  }`;
+  }
+`;
 
 export const UPDATE_USER = gql`
- mutation UpdateUser($id:ID!, $boardId: ID ){
-  updateUser(id: $id, boardId: $boardId){
-    id
-    name
-    board{
+  mutation UpdateUser($id: ID!, $boardId: ID) {
+    updateUser(id: $id, boardId: $boardId) {
       id
-      title
+      name
+      board {
+        id
+        title
+      }
     }
   }
-}
 `;
 
 export const UPDATE_USER_BOARD = gql`
   mutation updateUserBoard($userId: ID!, $boardId: ID!) {
     updateUserBoard(userId: $userId, boardId: $boardId) {
       id
-    
     }
   }
-  `;
+`;
 
 export const ADD_USER_BOARD = gql`
   mutation newUserBoard($userId: ID!, $title: String!, $image: String!) {
     newUserBoard(userId: $userId, title: $title, image: $image) {
       id
       name
-      boards{
+      boards {
         id
         title
         image
       }
     }
   }
-  `;
-  
-
-
-
-
+`;
