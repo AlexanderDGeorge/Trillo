@@ -22,7 +22,7 @@ class Register extends Component {
   updateCache(client, { data }) {
     console.log(data);
     client.writeData({
-      data: { isLoggedIn: data.register.loggedIn }
+      data: { isLoggedIn: data.register.loggedIn, id: data.register.id }
     });
   }
 
@@ -47,10 +47,11 @@ class Register extends Component {
         <Mutation
           mutation={REGISTER_USER}
           onCompleted={data => {
-            const { token } = data.register;
+            const { token, id } = data.register;
+            localStorage.setItem("id", id);
             localStorage.setItem("auth-token", token);
 
-            this.props.history.push("/");
+            this.props.history.push("/boards");
           }}
           onError={({ graphQLErrors }) => {
             this.setState({
