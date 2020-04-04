@@ -38,7 +38,7 @@ export const CONVERT_TOKEN = gql`
 `;
 
 export const CREATE_CARD = gql`
-  mutation CreateCard($title: String!, $description: String!) {
+  mutation CreateCard($title: String!, $description: String) {
     newCard(title: $title, description: $description) {
       id
       title

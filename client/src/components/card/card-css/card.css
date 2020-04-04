@@ -1,6 +1,6 @@
 .card-container {
   background-color: #ebecf0;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .all-cards {
@@ -39,13 +39,58 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-left: 30px;
+  margin-left: 42px;
+}
+
+.card-add:hover {
+  background-color: darkgrey;
 }
 
 .card-title-textbox {
   border: 1px solid black;
   padding: 5px;
-  width: 80%;
+  width: 90%;
   margin-top: 10px;
   margin-left: 5px;
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+}
+.card-title {
+  font-size: 16px;
+  float: left;
+  font-weight: bold;
+}
+.card-description {
+  color: grey;
+  font-size: 14px;
+  padding: 10px;
+}
+
+.card-buttons {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 5px;
+}
+
+.btn-card-add {
+  float: left;
+  font-size: 16px;
+  font-size: 16px;
+}
+.btn-card-add > button:hover {
+  background-color: green;
+}
+
+.btn-card-cancel > button:hover {
+  background-color: green;
+}
+
+.btn-card-add > button {
+  font-size: 12px;
+}
+
+.btn-card-cancel > button {
+  font-size: 12px;
 }

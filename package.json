@@ -35,5 +35,8 @@
     "mongoose": "^5.8.9",
     "nodemon": "^2.0.2",
     "validator": "^12.1.0"
+  },
+  "devDependencies": {
+    "prettier": "^2.0.2"
   }
 }
