@@ -6,10 +6,12 @@ import NewList from './new-list';
 function List(props) {
   return (
     
-    <div className="lists">
+    <div  className="lists">
      
       {props.lists.map(list => (
-        <ListItem listId={list.id} boardId={props.boardId}/>
+        <div key={list.id} >
+          <ListItem listId={list.id} boardId={props.boardId}/>
+        </div>
       ))}
       <NewList boardId={props.boardId} />
     </div>

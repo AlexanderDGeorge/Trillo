@@ -8,8 +8,8 @@ function CardList(props){
 
    return (
        <div>
-          {props.cards.map( card =>(
-              <div className="card-item">
+          {props.cards.map( card=>(
+              <div key={card.id} className="card-item">
                     <CardItem id={card.id} title={card.title} description={card.description} listId={props.listId} />
               </div>
           ))}
