@@ -1,7 +1,7 @@
-import React from 'react';
-import { useMutation } from 'react-apollo';
-import { DELETE_LIST, REMOVE_BOARD_LIST } from '../../graphql/mutations';
-import { FETCH_BOARD, FETCH_LIST } from '../../graphql/queries';
+import React from "react";
+import { useMutation } from "react-apollo";
+import { DELETE_LIST, REMOVE_BOARD_LIST } from "../../graphql/mutations";
+import { FETCH_BOARD, FETCH_LIST } from "../../graphql/queries";
 
 function DeleteList(props) {
   // const [deleteList] = useMutation(DELETE_LIST, {
@@ -18,24 +18,26 @@ function DeleteList(props) {
       cache.writeQuery({
         query: FETCH_BOARD,
         variables: { id: props.boardId },
-        data: { board: removeBoardList }
-      })
-    }
+        data: { board: removeBoardList },
+      });
+    },
   });
 
-  function handleClick(){
+  function handleClick() {
     //deleteList({variables: {id: props.listId}})
-    removeBoardList({variables: {
-      boardId: props.boardId, 
-      listId: props.listId
-    }})
+    removeBoardList({
+      variables: {
+        boardId: props.boardId,
+        listId: props.listId,
+      },
+    });
   }
 
   return (
     <button onClick={handleClick}>
-      X
+      <h2>X</h2>
     </button>
-  )
+  );
 }
 
 export default DeleteList;
