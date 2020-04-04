@@ -21,33 +21,34 @@ function BoardList() {
         ) : (
           <div>
             {data.user.boards.map(board => (
-              <div
-                id="imgCard"
-                className="card"
+              <Link
+                className="link-board"
+                to={`/boards/${board.id}`}
                 key={board.id}
-                style={{
-                  backgroundImage:
-                    "url(" +
-                    require(`../../assets/images/${
-                      board.image ? board.image : "1.jpeg"
-                    }`) +
-                    ")"
-                }}
               >
-                <span className="deleteBtn">
-                  <DeleteBoard id={board.id} />
-                </span>
-                <br></br>
-                <Link
-                  className="link-board"
-                  to={`/boards/${board.id}`}
+                <div
+                  id="imgCard"
+                  className="card"
                   key={board.id}
+                  style={{
+                    backgroundImage:
+                      "url(" +
+                      require(`../../assets/images/${
+                        board.image ? board.image : "1.jpeg"
+                      }`) +
+                      ")"
+                  }}
                 >
+                  <span className="deleteBtn">
+                    <DeleteBoard id={board.id} />
+                  </span>
+                  <br></br>
+
                   <div className="container">
                     <span className="board-tile-details">{board.title}</span>
                   </div>
-                </Link>
-              </div>
+                </div>
+              </Link>
             ))}
           </div>
         )}

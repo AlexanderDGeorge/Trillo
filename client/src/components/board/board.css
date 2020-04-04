@@ -7,8 +7,12 @@
 #no-boards {
   display: flex;
   flex-direction: row;
-  font-size: 30px;
+  
   padding: 50px;
-  margin: 200px;
+  margin: 150px;
   justify-content: center;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 30px;
+  font-weight: 600;
+  transition: linear 0.2s;
 }
