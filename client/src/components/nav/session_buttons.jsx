@@ -7,6 +7,7 @@ import Logout from './logout';
 function SessionButtons() {
   const { data } = useQuery(IS_LOGGED_IN);
   if (data.isLoggedIn) {
+    
     return (
       <div className="session-buttons">
         <div></div>

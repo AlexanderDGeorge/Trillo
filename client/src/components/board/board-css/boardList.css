@@ -76,13 +76,11 @@ hr {
   
 }
 .deleteBtn{
-   width: 15px;
+   content: 'x'; 
    float: right;
-   margin-top: 0;
-   font-size: 20px;
-   color: gray;
-   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
    cursor: pointer;
+   color: grey;
+   font-weight: 300;
 }
 
 .tooltip {
@@ -93,14 +91,13 @@ hr {
 
 .tooltip .tooltiptext {
   visibility: hidden;
-  width: 100px;
+  width: 60px;
   background-color: gray;
   color: #fff;
   text-align: center;
   border-radius: 6px;
   padding: 5px 0;
-
-  /* Position the tooltip */
+  font-size: 13px;
   position: absolute;
   z-index: 1;
 }
@@ -108,9 +105,15 @@ hr {
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
+
 .link-board{
   text-decoration: none;
+  position: relative;
 }
+
+
+
+
 
 
 

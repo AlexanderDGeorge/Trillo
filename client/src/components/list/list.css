@@ -108,3 +108,12 @@
 .btn-card-cancel > button {
   font-size: 12px;
 }
+
+
+.deleteBtn{
+   content: 'x'; 
+   float: right;
+   cursor: pointer;
+   color: grey;
+   font-weight: 600;
+}

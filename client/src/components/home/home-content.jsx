@@ -13,8 +13,10 @@ class HomeContent extends Component {
   }
 
   updateCache(client, { data }) {
+    debugger
     console.log(data);
     client.writeData({
+      
       data: { isLoggedIn: data.login.loggedIn, id: data.login.id }
     });
   }
