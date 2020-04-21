@@ -40,7 +40,7 @@ function AddCard(props) {
 
   if (open) {
     return (
-      <div>
+      <div className="card-item">
         <form className="card-add-form" onSubmit={(e) => handleSubmit(e)}>
           <input
             className="card-title-textbox"

@@ -79,8 +79,9 @@ hr {
    content: 'x'; 
    float: right;
    cursor: pointer;
-   color: grey;
+   color:grey;
    font-weight: 300;
+   padding-right:5px;
 }
 
 .tooltip {

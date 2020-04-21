@@ -6,11 +6,18 @@
 .list-item {
   display: flex;
   flex-direction: column;
-  background-color: #ebecf0;
-  padding: 10px;
+  /* background-color: #ebecf0; */
+  /* padding: 10px; */
   border-radius: 5px;
   width: 200px;
   margin: 10px;
+  /* border: 1px solid grey; */
+   /* box-shadow: 1px 1px 1px 1px rgba(30, 30, 30, 0.25); */
+   /* background-color: #f07b3f; */
+    border-style: solid;
+    border-width: 1px;
+   border-color: #dee0e1;
+  
 }
 
 .list-item-header {
@@ -18,15 +25,20 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  /* width:100%; */
+  background-color: #F07B3F;
+
+  
 }
 
 .list-item-title {
   background-color: transparent;
-  margin: 5px 5px 5px 0;
+  margin: 5px;
   width: 150px;
   font-size: 20px;
   font-weight: 600;
   overflow: hidden;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .list-item-title:focus {
@@ -77,7 +89,7 @@
   background-color: white;
   padding: 5px;
   border-radius: 5px;
-  box-shadow: 0 1px 0 rgba(9, 30, 66, 0.25);
+  /* box-shadow: 0 1px 0 rgba(9, 30, 66, 0.25); */
 }
 
 .card-buttons {
@@ -114,6 +126,16 @@
    content: 'x'; 
    float: right;
    cursor: pointer;
-   color: grey;
+  color: rgba(0, 0, 0, 0.5);
    font-weight: 600;
+     
+}
+
+.btnDeleteList{
+    cursor: "pointer";
+    font-size: 10px;
+   color: rgba(0, 0, 0, 0.6);
+   background-color: #F07B3F;
+   padding-right: 5px;
+
 }

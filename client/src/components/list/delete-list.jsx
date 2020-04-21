@@ -34,7 +34,11 @@ function DeleteList(props) {
   }
 
   return (
-      <button onClick={handleClick}><h2>X</h2></button>
+    <button onClick={handleClick} className="btnDeleteList">  
+      <h1>x</h1>
+    </button>
+
+   
  );
 }
 

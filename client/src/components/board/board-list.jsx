@@ -39,9 +39,9 @@ function BoardList() {
                       ")"
                   }}
                 >
-                  <span className="deleteBtn">
+                 
                     <DeleteBoard id={board.id} />
-                  </span>
+               
                   <br></br>
 
                   <div className="container">

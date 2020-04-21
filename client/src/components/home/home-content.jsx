@@ -13,7 +13,7 @@ class HomeContent extends Component {
   }
 
   updateCache(client, { data }) {
-    debugger
+    
     console.log(data);
     client.writeData({
       

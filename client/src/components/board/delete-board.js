@@ -47,6 +47,7 @@ class  DeleteBoard extends Component{
           <div className="deleteBtn tooltip">X
             <span className="tooltiptext">delete</span>
           </div>
+        
         </a>
       )}
     </Mutation>

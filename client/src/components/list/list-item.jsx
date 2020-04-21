@@ -35,9 +35,9 @@ function ListItem(props) {
             defaultValue={data.list.title}
             onChange={e => handleChange(e)} 
           />
-           <span className="deleteBtn"> 
+        
             <DeleteList listId={props.listId} boardId={props.boardId}/>
-          </span>
+       
         </div>
         <div className="list-item-card">
             <Card cards={data.list.cards}  listId = {props.listId}/>

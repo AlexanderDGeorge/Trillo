@@ -109,6 +109,7 @@ function CardItemDetail(props) {
     }
 
     function modalConfirmHandler(e){
+     
         e.preventDefault();
         UpdateCard({variables: { id: props.key, title: props.title, description: props.description}})
         props.editing = false;

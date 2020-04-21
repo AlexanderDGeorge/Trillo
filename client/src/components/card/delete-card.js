@@ -7,7 +7,8 @@ import { FETCH_CARDS, GET_LIST_CARDS } from "../../graphql/queries";
 const linkStyle = {
   cursor: "pointer",
   fontSize: "10px",
-  color: "red",
+  color: "grey",
+
 };
 
 const DeleteCard = (props) => {
@@ -23,8 +24,8 @@ const DeleteCard = (props) => {
       }}
     >
       {(removeListCard, { data }) => (
-        <a
-          style={linkStyle}
+        <a className="btnDeleteCard"
+          // style={linkStyle}
           onClick={(e) => {
             e.preventDefault();
             removeListCard({

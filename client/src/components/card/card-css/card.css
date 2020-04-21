@@ -1,5 +1,5 @@
 .card-container {
-  background-color: #ebecf0;
+  /* background-color: #ebecf0; */
   /* border: 1px solid red; */
 }
 
@@ -8,12 +8,22 @@
 }
 
 .card-item {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   border-radius: 3px;
-  background-color: ghostwhite;
-  padding: 5px;
-  margin-top: 2px;
-  margin-bottom: 2px;
+  background-color: white;
+  margin-bottom: 10px;
+ 
+  padding-bottom: 3px;
+
+
+  /* margin-bottom: 2px; */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+
+   /* box-shadow: 1px 1px 1px 1px rgba(30, 30, 30, 0.25); */
+}
+.card-item:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
 /* .add-card{
@@ -39,7 +49,9 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-left: 42px;
+  width: 100%;
+  height:25px;
+  font-size: 14px;
 }
 
 .card-add:hover {
@@ -49,9 +61,10 @@
 .card-title-textbox {
   border: 1px solid black;
   padding: 5px;
-  width: 90%;
-  margin-top: 10px;
-  margin-left: 5px;
+  width: 93%;
+  margin-top: 5px;
+ 
+ 
 }
 .card-header {
   display: flex;
@@ -61,11 +74,16 @@
   font-size: 16px;
   float: left;
   font-weight: bold;
+      color: rgba(0, 0, 0, 0.5);
+      padding:6px;
+   
+ 
 }
 .card-description {
   color: grey;
-  font-size: 14px;
-  padding: 10px;
+  font-size: 11px;
+   padding:10px;
+ 
 }
 
 .card-buttons {
@@ -78,9 +96,11 @@
   float: left;
   font-size: 16px;
   font-size: 16px;
+  
 }
 .btn-card-add > button:hover {
   background-color: green;
+
 }
 
 .btn-card-cancel > button:hover {
@@ -93,4 +113,12 @@
 
 .btn-card-cancel > button {
   font-size: 12px;
+}
+
+.btnDeleteCard{
+    cursor: "pointer";
+    font-size: 10px;
+   color: rgba(0, 0, 0, 0.6);
+  padding:5px;
+
 }
