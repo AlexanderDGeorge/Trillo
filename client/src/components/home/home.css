@@ -35,16 +35,16 @@
 
 .home-content h1 {
   color: white;
-  font-size: 3rem;
-  font-weight: 400;
-  padding: 4px;
+  font-size: 2.5rem;
+  font-weight: 200;
+  padding: 3px;
 }
 
 .home-content h2 {
   color: white;
-  font-size: 1.5rem;
-  font-weight: 300;
-  padding: 4px;
+  font-size: 1.2rem;
+  font-weight: 20;
+  padding: 3px;
 }
 
 .home-content span {

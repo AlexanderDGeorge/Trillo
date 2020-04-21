@@ -92,6 +92,21 @@ class Login extends Component {
                     placeholder="Password"
                   />
                   <button type="submit">Log In</button>
+                
+                  <button
+                    className="demo-user-btn"
+                    onClick={e => {
+                      e.preventDefault();
+                      loginUser({
+                        variables: {
+                          email: "testUser100@gmail.com",
+                          password: "12345678"
+                        }
+                      });
+                    }}
+                  >
+                    Demo Login
+              </button>
                 </form>
               </div>
             </div>

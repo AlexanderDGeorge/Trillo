@@ -29,7 +29,9 @@
 /* .add-card{
    
 } */
-
+.card-add-form {
+   background-color: #ebecf0;
+}
 .card-add-form button {
   background-color: #61bd4f;
   color: white;
@@ -59,7 +61,7 @@
 }
 
 .card-title-textbox {
-  border: 1px solid black;
+ 
   padding: 5px;
   width: 93%;
   margin-top: 5px;
@@ -119,6 +121,4 @@
     cursor: "pointer";
     font-size: 10px;
    color: rgba(0, 0, 0, 0.6);
-  padding:5px;
-
 }

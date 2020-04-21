@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import { REGISTER_USER } from "../../graphql/mutations";
+
 import "./session.css";
 import Home from "../home/home";
 
@@ -97,6 +98,7 @@ class Register extends Component {
                     placeholder="Password"
                   />
                   <button type="submit">Sign up</button>
+              
                 </form>
               </div>
             </div>
